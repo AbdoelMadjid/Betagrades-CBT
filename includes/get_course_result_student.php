@@ -50,7 +50,7 @@ if (mysqli_num_rows($r) > 0){
 	$pdf->SetFont('helvetica','',12);
 	//$image = fopen("logo-footer.jpg", 'r');
 	//$content.=  '<img src=""/>';
-	$content.=$pdf->Image('logo-footer.jpg',75,10, 50,  50);
+	$content.=$pdf->Image('export/BetaGrades_logo2.png',75,10, 50,  50);
 	$content.='<br><br><br><br><br><br><br><br><br><br><br><br>';
 	//$content .= '<br><br><u>EXAMINATION RESULT FOR <strong>'.$course_title.' - '.$class.' - '.$course_term.' TERM</strong></u><br><br>';
     $content .= '<strong>Fullname: </strong> '.$theSurname.'<br>'; 

@@ -59,7 +59,7 @@ if (mysqli_num_rows($r) > 0){
 	$pdf=new PDF();
 	$pdf->AddPage();
 	$pdf->SetFont('helvetica','',12);
-	$content.=$pdf->Image('logo-footer.jpg',75,10, 50,  50);
+	$content.=$pdf->Image('export/BetaGrades_logo2.png',75,20, 50,  20);
 	$content.='<br><br><br><br><br><br><br><br><br><br><br>';
 	$content .= '<br><br><u>EXAMINATION RESULT FOR <strong>'.$course_title.' - '.$class.' - '.$course_term.' TERM</strong></u><br><br>';
 	$content .= '<table border="1"><tr><td width="40" height="50">S/N</td>';

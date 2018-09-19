@@ -24,11 +24,11 @@
 
     <div class="container-fluid">
         <div class="row">
-            <div class="col-lg-3">
+            <div class="col-md-3">
                 <div class="row">
-                    <div id="left_dashboard" class="col-lg-12" style="paddin:0; ">
+                    <div id="left_dashboard" class="col-md-12" style="height:100vh !important; ">
                         <div id="dashboard_student_details">
-                            <img class="center-block" style="margin-top:15px; margin-botto:30px; widt:95%" height="150" width="180" src="logo-footer.jpg" />
+                            <img class="center-block" style="margin-top:15px; margin-bottom:45px; widt:95%" height="100" width="180" src="export/BetaGrades_logo2.png" />
                             <h4>Your Details</h4>
                             <hr />
                             <span id="key">Name :</span><span id="value"><?php echo $student->getName() ?></span>
@@ -70,7 +70,7 @@
                             }
                             
 
-                            echo '<div  class="col-lg-2"> <button id="'.$id.'" class="'.$btn_class.'"  type="submit" name="go_to_question" value="'.$countt.'">'.$countt.'</button></div>';
+                            echo '<div  class="col-md-2"> <button id="'.$id.'" class="'.$btn_class.'"  type="submit" name="go_to_question" value="'.$countt.'">'.$countt.'</button></div>';
                             $countt++;
                         }
                         ?>
@@ -85,9 +85,9 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-9">
+            <div class="col-md-9">
                 <div class="row">
-                    <div class="col-lg-12" style="padding:0 !important">
+                    <div class="col-md-12" style="padding:0 !important">
                         <div id="exam_details_and_time">
                             <div id="exam_title_and_instruction">
                                 <h4>
@@ -116,7 +116,7 @@
                             </div>
                         </div>
                     </div>
-                    <div id="content_container" class="col-lg-12">
+                    <div id="content_container" class="col-md-12">
 
                         <div id="content">
                             <h4 id="question_count" style="background-color:#0066FF; color:white">
@@ -220,7 +220,7 @@
                         </table>
                         </form>
                     </div>
-                    <div class="col-lg-12">
+                    <div class="col-md-12">
                     </div>
                 </div>
             </div>

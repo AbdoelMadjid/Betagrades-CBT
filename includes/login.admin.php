@@ -12,7 +12,7 @@
 <link rel="shortcut icon" href="logo-footer.jpg"  />
 <title>Untitled Document</title>
 <style>
-body { background:url(export/Group%2021@2x.png) center; font-family: "Montserrat";  }
+body { background:url(export/Group%2021@2x.png) center; font-family: "Montserrat";background-color:#3d5ae8  }
 .center-align { text-align:center}
 label { float:left; clear:both; color: #666666; font-size:16px; font-weight:100 }
 input, select { width:100%; padding:10px; background-color:white; border:1px solid #cccccc; float:left; clear:both; border-radius:3px; margin-bottom:15px}

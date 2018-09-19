@@ -114,11 +114,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 		# key is specified using hexadecimal
 		$key = pack('H*', "bcb04b7e103a0cd8b54763051cef08bc55abe029fdebae5e1d417e2ffb2a00a3");
 
-		$questionn = encrypt($questionn, $key);
+		/*$questionn = encrypt($questionn, $key);
 		$op1 = encrypt($op1, $key);
 		$op2 = encrypt($op2, $key);
 		$op3 = encrypt($op3, $key);
-		$op4 = encrypt($op4, $key);
+		$op4 = encrypt($op4, $key);*/
+		$questionn = $questionn;
+		$op1 = $op1;
+		$op2 = $op2;
+		$op3 = $op3;
+		$op4 = $op4;
 
 		$course_id = $_SESSION['cid'] ;
 		//$course_id = 1 ;
