@@ -1,0 +1,126 @@
+<div id="delete_teacher_confirmation">
+    <div class="center-block" style=" border-radius:4px;width:400px; background-color:white; height:230px; margin-top:10%; padding:15px;">
+        <p style="margin-bottom:100px; margin-top:10px" id="info"> will be permanently removed. Are you sure you want to proceed?</p>
+        <?php
+        echo ' <a  style="padding:3px; margin-right:15px"  id="delete_teacher_btn_yes" class="red-btn" data-teacher-id="" href="" >REMOVE </a>';
+        ?>
+        <button class="download_course_butto" id="delete_teacher_btn_close" type="button">CANCEL</button>
+    </div>
+</div>
+<!-- Page Content -->
+<!-- ============================================================== -->
+<div id="page-wrapper">     
+    <div class="container-fluid">   
+        <div id="tabs-container">
+            <div class="row bg-title">
+                <div class="col-lg-6 col-md-4 col-sm-4 col-xs-12">
+                    <!--<h4 class="page-title">Manage Students</h4>--> 
+                    <ul class="tabs">
+                        <li class="tab-link current" data-tab="tab-1"><h4 class="page-title"><?php echo $type.'s';?></h4></li>
+                        <li class="tab-link" data-tab="tab-2"><h4 class="page-title"> Register  <?php echo $type;?></h4></li>
+                    </ul>
+                </div>
+                <div class="col-lg-6 col-sm-8 col-md-8 col-xs-12">
+                    <a href="logout.php" class="btn btn-danger pull-right m-l-20 hidden-xs hidden-sm waves-effect waves-light">Logout</a>
+                    <ol class="breadcrumb">
+                        <li><a href="#">Dashboard</a></li>
+                        <li class="active"><?php echo strtoupper($type);?></li>
+                    </ol>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+                <!-- /.row -->
+                <!-- ============================================================== -->
+                <!-- Different data widgets -->
+                <!-- ============================================================== -->
+                
+            <!--row -->
+            <!-- /.row -->
+
+            <!-- ============================================================== -->
+            <!-- table -->
+            <!-- ============================================================== -->
+            <div class="row" style="margin-top:-30px">
+                <div id="tab-2" class="tab-content">
+                    <br/>
+                    <h2 style="text-align:center">Register <?php echo $type;?></h2>
+                        <p style="text-align:center">Please enter the <?php echo $type;?>'s details as requested below.</p>
+                        <p style="text-align:center;color:#666666;">Username and Password should be a minimum of 5 
+                            characters <br/>and a combination of alphabeths and/or numbers. 
+                        </p>
+                        <div  class=" col-lg-">
+                        <form autocomplete="off"   action="admin.php" method="post" id="create_teacher_form" class="center-block">
+                            <label for="username">Username</label><input type="text" name="username" value="<?php echo $username; ?>" />
+                            <label for="first_name">First name</label><input type="text" name="first_name" value="<?php echo $first_name; ?>" />
+                            <label for="last_name">Last name</label><input type="text" name="last_name" value="<?php echo $last_name; ?>" />                            
+                            <label for="pass">Password</label><input type="password" name="pass" autocomplete="off" />
+                            <button type="submit" name="submit" value="create_<?php echo $type;?>">REGISTER <?php echo strtoupper($type);?></button>
+                        </form>
+                        </div>
+                </div>
+                <div id="tab-1" class="tab-content current">
+                    <?php $admin->displayMetrics($dbc); ?>
+                    <div class="col-md-12 col-lg-12 col-sm-12">
+                        <div class="white-box">
+                            <div class="col-md-3 col-sm-4 col-xs-6 pull-right">
+                                
+                            </div>
+                            <h3 class="box-title"><p>List of all  <?php echo $type.'s'?> in the database.</p></h3>
+                            <div class="table-responsive">
+                                <table class="table ">
+                                    
+                                        <tr>
+                                            <!--<th>S/N</th>-->
+                                            <th>FIRST NAME</th>
+                                            <th>LAST NAME</th>
+                                            <th>USERNAME</th>
+                                            <th>ACTION</th>
+                                            
+                                        </tr>
+                                    <?php
+                                    if ($type === 'teacher')
+                                    {
+                                        $the_type = 'lecturer';
+                                    }
+                                    else 
+                                    {
+                                        $the_type = $type;
+                                    }
+                                    $q = "SELECT id, IFNULL(first_name, '<i>empty</i>') AS first_name, IFNULL(last_name, '<i>empty</i>') AS last_name, username from admin WHERE type = '$the_type' ORDER BY id DESC";                                    
+                                    $r = mysqli_query($dbc, $q);
+                                    if ($r) 
+                                    {
+                                        while ($row = mysqli_fetch_array($r, MYSQLI_ASSOC)) 
+                                        {                                       
+                                        ?>
+                                            <tr id="teacher_row_<?php echo $row['id']; ?>" height="60" style="border-bottom:1px solid #cccccc">
+                                                <td id="teacher_row_fn<?php echo $row['id']; ?>"><b><?php echo $row['first_name']; ?></b></td>
+                                                <td id="teacher_row_ln<?php echo $row['id']; ?>" ><?php echo $row['last_name']; ?></td>
+                                                <td ><?php echo $row['username']; ?></td>
+                                                <td >
+                                                <a style="padding:3px"   class="delete_teacher_btn red-btn" data-teacher-id="<?php echo $row['id']; ?>" href="" >
+                                                <span class="glyphicon glyphicon-remove-circle"></span> Remove</a>
+                                                </td>
+                                            </tr>
+                                        <?php
+                                        }
+                                    }
+                                    ?>
+                                    
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- ============================================================== -->
+            <!-- chat-listing & recent comments -->
+            <!-- ============================================================== -->
+            
+        </div> <!-- end of tabs container -->
+</div> <!-- end of container fluid -->
+<footer class="footer text-center"> 2017 &copy; Ample Admin brought to you by wrappixel.com </footer>
+</div>
+<!-- ============================================================== -->
+<!-- End Page Content -->
+    

@@ -1,0 +1,88 @@
+<div id="delete_question_confirmation">
+    <div class="center-block" style=" border-radius:4px;width:400px; background-color:white; height:230px; margin-top:10%; padding:15px;">
+        <p id="delete_info" style="margin-bottom:100px; margin-top:10px">The question with ID will be permanently deleted. Are you sure you want to proceed?</p>
+        <?php
+            echo '<button style="margin-right:15px" type="button" id="delete_question_button" data-question-id="" class="bt download_course_butto red-btn">Delete Question</button> ';
+        ?>
+        <button class="" id="cancel_delete_question" type="button">CANCEL</button>
+    </div>
+</div>
+        <!-- Page Content -->
+        <!-- ============================================================== -->
+        <div id="page-wrapper">
+            <div class="container-fluid">
+                <div class="row bg-title">
+                    <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+                        <h4 class="page-title">Manage Questions</h4> </div>
+                    <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+                        <a href="logout.php" class="btn btn-danger pull-right m-l-20 hidden-xs hidden-sm waves-effect waves-light">Logout</a>
+                        <ol class="breadcrumb">
+                            <li><a href="#">Dashboard</a></li>
+                        </ol>
+                    </div>
+                    <!-- /.col-lg-12 -->
+                </div>
+                <!-- /.row -->
+                <!-- ============================================================== -->
+                <!-- Different data widgets -->
+                <!-- ============================================================== -->
+                <!-- .row -->
+                <div class="row">
+                    <?php $admin->displayMetrics($dbc); ?>
+                </div>
+                <!--/.row -->
+                <!--row -->
+                <!-- /.row -->
+
+                <!-- ============================================================== -->
+                <!-- table -->
+                <!-- ============================================================== -->
+                <div class="row">
+                    <div class="col-md-12 col-lg-12 col-sm-12">
+                        <div class="white-box">
+                            <div class="col-md-3 col-sm-4 col-xs-6 pull-right">
+                                <form class="manager_view_questions_form" method="get" action="">
+                                    
+                                <select class="form-control pull-right row b-none" name="course_id">
+                                        <option>Select Subject</option>
+                                        <?php
+                                            $admin_id = $user->getId();                                           
+                                            if ( ( $user->isAdmin() ) || ( $user->isManager() ) )
+                                            {
+                                                $q = "SELECT id, title, class FROM courses";
+                                            }
+                                            elseif ( $user->isTeacher() )  
+                                            {
+                                                $q = "SELECT id, title, class FROM courses WHERE lecturer_id = $admin_id";
+                                            }
+                                            $r = mysqli_query($dbc, $q);
+                                            if ($r) 
+                                            {
+                                                while ($row = mysqli_fetch_array($r, MYSQLI_ASSOC)) 
+                                                {
+                                                    echo '<option  value="'.$row['id'].'">'.$row['title'].' - ' .$row['class'].'</option>';
+                                                }
+                                            }
+                                        ?> 
+                                </select>
+                                </form>
+                            </div>
+                            <h3 class="box-title">Questions</h3>
+                            <div id="view_questions_container" class="table-responsive">
+                                
+                            </div>
+                            <div ></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- ============================================================== -->
+                <!-- chat-listing & recent comments -->
+                <!-- ============================================================== -->
+                
+            </div>
+            <!-- /.container-fluid -->
+            <footer class="footer text-center"> 2017 &copy; Ample Admin brought to you by wrappixel.com </footer>
+        </div>
+        <!-- ============================================================== -->
+        <!-- End Page Content -->
+       

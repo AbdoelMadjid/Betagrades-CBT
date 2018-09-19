@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <!-- CSS rules for styling the element inside the editor such as p, h1, h2, etc. -->
+<link href="http://localhost/cbt/Froala/css/froala_style.min.css" rel="stylesheet" type="text/css" />
+    <meta charset="utf-8">
+
+    <!-- Include external CSS. -->
+    <link href="http://localhost/cbt/font-awesome-4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.25.0/codemirror.min.css">-->
+
+    <!-- Include Editor style. -->
+    <link href="http://localhost/cbt/Froala/css/froala_editor.pkgd.min.css" rel="stylesheet" type="text/css" />
+    <link href="http://localhost/cbt/Froala/css/froala_style.min.css" rel="stylesheet" type="text/css" />
+  </head>
+
+  <body>
+    <!-- Create a tag that we will use as the editable area. -->
+    <!-- You can use a div tag as well. -->
+    <!--<textarea>Hello there</textarea>-->
+    
+
+    <!-- Include external JS libs. -->
+   
+    <!--<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.25.0/codemirror.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.25.0/mode/xml/xml.min.js"></script>-->
+
+    <!-- Include Editor JS files. -->
+    <script type="text/javascript" src="http://localhost/cbt/jquery.js"></script>
+    <script>
+        $(function(){
+            $.getScript("http://localhost/cbt/Froala/js/froala_editor.pkgd.min.js", function(){
+                $('textarea').froalaEditor({
+                /*toolbarButtons: ['fullscreen', 'bold', 'italic', 'underline', 'strikeThrough', 'subscript', 'superscript', '|', 'fontFamily', 
+                'fontSize', 'color', 'inlineStyle', 'paragraphStyle', '|', 'paragraphFormat', 'align', 'formatOL', 'formatUL', 'outdent', 'indent', 
+                'quote', '-', 'insertLink', 'insertImage', 'insertVideo', 'insertFile', 'insertTable', '|', 'emoticons', 'specialCharacters', 
+                'insertHR', 'selectAll', 'clearFormatting', '|', 'print', 'spellChecker', 'help', 'html', '|', 'undo', 'redo'],*/
+                toolbarButtons: ['bold', 'italic', 'underline', 'strikeThrough', 'subscript', 'superscript', '|', 'fontFamily', 
+                'color',  '|', 'align', 'formatOL', 'formatUL', 'outdent', 'indent', 
+                '-',  'insertTable', '|', 'specialCharacters', 
+                'insertHR','clearFormatting', '|', 'spellChecker', 'help', 'html', '|', 'undo', 'redo'],
+                pluginsEnabled: null
+                })
+            })
+        })
+    </script>
+
+ 
+    <!-- Initialize the editor. -->
+    <script> 
+  $(function() {
+
+  });
+    </script>
+    
+    
+  </body>
+</html>
+

@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+</head>
+
+<body>
+<div id="content"></div>
+
+<script src="jquery.js"></script>
+<script src="bootstrap/js/bootstrap.min.js"></script>
+<script>
+$(function() {
+var xhr =new XMLHttpRequest(); //Create XMLHttpRequest object
+xhr.onload =function() { //When readystate changes
+if(xhr.status === 200) { // If server status was ok
+  responseObject = JSON . parse(xhr.responseText);
+// BUILD UP STRING WITH NEW CONTENT (could also use DOM manipulation)
+var newContent = '';
+for (var i = 0; i < responseObject.events.length; i++) {//Loop through object
+newContent += '<div class="event">' ;
+newContent += '<img src=" ' + responseObject.events[i] .map +' " ' ;
+newContent += 'alt=" ' + responseObject.events[i] .location + ' " / >' ;
+newContent += '<p><b>' + responseObject .events[i] .location+ '</b><br>';
+newContent += responseObject.events[i] .date+ '</p>' ;
+newContent +='</div>';
+
+}
+
+
+$('#content').append(newContent + 'Good jufdt cti');
+//Update the page with the new content
+//document. getElementByid('content').innerHTML = newContent ;
+}
+} ;
+
+xhr.open( 'GET', 'data.json' , true);
+xhr.send(null); 
+
+
+});
+</script>
+</body>
+</html>

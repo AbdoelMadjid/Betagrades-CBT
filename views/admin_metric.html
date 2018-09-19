@@ -1,0 +1,60 @@
+                <div class="col-lg-4 col-sm-6 col-xs-12">
+                    <div class="white-box analytics-info">
+                        <h3 class="box-title">Total Number of Subjects</h3>
+                        <ul class="list-inline two-part">
+                            <li>
+                                <div id="sparklinedash"></div>
+                            </li>
+                            <?php
+                            $q = 'SELECT count(*) AS nOFSubjects FROM courses';
+                            $r = mysqli_query ($dbc, $q);
+                            if ($r) 
+                            {
+                                $row = mysqli_fetch_array($r,MYSQLI_ASSOC);
+
+                            }
+                            ?>
+                            <li class="text-right"><i class="ti-arrow-up text-success"></i> <span class="counter text-success"><?php echo $row['nOFSubjects']; ?></span></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-6 col-xs-12">
+                    <div class="white-box analytics-info">
+                        <h3 class="box-title">Total Number of Students</h3>
+                        <ul class="list-inline two-part">
+                            <li>
+                                <div id="sparklinedash2"></div>
+                            </li>
+                            <?php
+                            $q = 'SELECT count(*) AS nOFSubjects FROM students';
+                            $r = mysqli_query ($dbc, $q);
+                            if ($r) 
+                            {
+                                $row = mysqli_fetch_array($r,MYSQLI_ASSOC);
+
+                            }
+                            ?>
+                            <li class="text-right"><i class="ti-arrow-up text-purple"></i> <span class="counter text-purple" id="num_of_students_counter"><?php echo $row['nOFSubjects']; ?></span></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-6 col-xs-12">
+                    <div class="white-box analytics-info">
+                        <h3 class="box-title">Total Number of Questions</h3>
+                        <ul class="list-inline two-part">
+                            <li>
+                                <div id="sparklinedash3"></div>
+                            </li>
+                            <?php
+                            $q = 'SELECT count(*) AS nOFSubjects FROM questions';
+                            $r = mysqli_query ($dbc, $q);
+                            if ($r) 
+                            {
+                                $row = mysqli_fetch_array($r,MYSQLI_ASSOC);
+
+                            }
+                            ?>
+                            <li class="text-right"><i class="ti-arrow-up text-info"></i> <span class="counter text-info"><?php echo $row['nOFSubjects']; ?></span></li>
+                        </ul>
+                    </div>
+                </div>

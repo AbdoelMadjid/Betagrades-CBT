@@ -1,0 +1,200 @@
+<!-- Page Content -->
+<!-- ============================================================== -->
+<div id="page-wrapper">
+    <div class="container-fluid">
+        <div id="tabs-container">
+            <div class="row bg-title">
+                <div class="col-lg-6 col-md-4 col-sm-4 col-xs-12">
+                    <!--<h4 class="page-title">Manage Subjects</h4>-->
+                    <ul class="tabs">
+                        <li class="tab-link current" data-tab="tab-1">
+                            <h4 class="page-title">LIST OF SUBJECTS</h4>
+                        </li>
+                        <?php
+                                if ($user->isTeacher()) 
+                                {
+                                    echo '<li class="tab-link" data-tab="tab-2"><h4 class="page-title">CREATE SUBJECT</h4></li>';
+                                }
+                                ?>
+
+                    </ul>
+                </div>
+                <div class="col-lg-6 col-sm-8 col-md-8 col-xs-12">
+                    <a href="logout.php" class="btn btn-danger pull-right m-l-20 hidden-xs hidden-sm waves-effect waves-light">Logout</a>
+                    <ol class="breadcrumb">
+                        <li><a href="admin.php">Dashboard</a></li>
+                        <li class="active">SUBJECTS</li>
+                    </ol>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+            <!-- ============================================================== -->
+            <!-- Different data widgets -->
+            <!-- ============================================================== -->
+            <!-- .row -->
+            <div class="row">
+                <div id="tab-" class="tab-conten urrent">
+
+                </div>
+            </div>
+            <!--/.row -->
+            <!--row -->
+            <!-- /.row -->
+
+            <!-- ============================================================== -->
+            <!-- table -->
+            <!-- ============================================================== -->
+            <div class="row">
+                <?php
+					if ( $user->isTeacher() ) {
+					?>
+                    <div id="tab-2" class="tab-content">
+                        <div id="create_course_form" style="margin-top:0px; width:100%;" class="col-lg-" class="center-block">
+                            <h2 style="text-align:center">CREATE SUBJECT</h2>
+                            <form style="width:350px; padding:20px 15px; height:280px;" method="post" action="admin" id="login_for" class="center-block">
+                                <label for="course_title">Subject Title</label><input style="width:100%" type="text" name="course_title" />
+                                <label for="class">Class: </label>
+                                <select style="float:left; margin-left:px; border-bottom:1px solid #cccccc; width:100%; clear:both; padding:5px" name="class">
+                                        <option value="none">None</option>
+                                        <option value="JS1">JS1</option>
+                                        <option value="JS2">JS2</option>
+                                        <option value="JS3">JS3</option>
+                                        <option value="SS1">SS1</option>
+                                        <option value="SS2">SS2</option>
+                                        <option value="SS3">SS3</option>
+                                    </select>
+                                <label style="margin-top:15px" for="term">Term: </label>
+                                <select style="float:left; margin-left:px; border-bottom:1px solid #cccccc; width:100%; clear:both; padding:5px" name="term">
+                                        <option value="none">None</option>
+                                        <option value="1ST">First Term</option>
+                                        <option value="2ND">Second Term</option>
+                                        <option value="3RD">Third Term</option>
+                                    </select>
+                                <button type="submit" name="submit" value="create_course">CREATE SUBJECT</button>
+                            </form>
+                        </div>
+                    </div>
+                    <?php
+                    }
+                    ?>
+                        <div id="tab-1" class="tab-content current">
+                            <?php $admin->displayMetrics($dbc); ?>
+                            <div class="col-md-12 col-lg-12 col-sm-12">
+                                <div class="white-box">
+                                    <div class="col-md-3 col-sm-4 col-xs-6 pull-right">
+
+                                    </div>
+                                    <h3 class="box-title">SUBJECTS</h3>
+                                    <div class="table-responsive">
+                                        <table class="table">
+                                            <?php
+                                if ( $user->isTeacher() ) 
+                                {
+                                        echo '<p>List of subject(s) in  the Database created by you.</p>';
+                                }
+                                else 
+                                {
+                                    echo '<p>List of all subject(s) in  the Database.</p>';
+                                }
+                                ?>
+                                                <thead>
+                                                    <tr style="color:#333333">
+                                                        <th>S/N</th>
+                                                        <th>SUBJECT</th>
+                                                        <th>CLASS</th>
+                                                        <th>TERM</th>
+                                                        <th>TEACHER</th>
+                                                        <?php
+                                                    if ( $user->isTeacher() ) 
+                                                    {
+                                                        echo '<th><span>Action</span></th>';
+                                                    }
+                                                ?>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <?php
+                                            $admin_id = $user->getId();
+                                                
+                                            if ( ( $user->isAdmin() ) || ( $user->isManager() ) )
+                                            {
+                                                $q = "SELECT id, title, term, class, lecturer_id FROM courses ORDER BY id DESC";
+                                            }
+                                            elseif ( $user->isTeacher() )  
+                                            {
+                                                $q = "SELECT c.id, title, term, class, lecturer_id, concat(first_name, ' ', last_name) AS name FROM courses c 
+                                                    INNER JOIN admin a ON a.id = c.lecturer_id WHERE c.lecturer_id = $admin_id ORDER BY id DESC";
+                                            }else 
+                                            {
+                                                exit('couldnt get type');
+                                            }
+                                            $r = mysqli_query($dbc, $q);
+                                            if ($r) {
+                                                $count_subject = 1;
+                                                while ($row = mysqli_fetch_array($r, MYSQLI_ASSOC)) {                                       
+                                                    if ( ( $user->isAdmin() ) || ( $user->isManager() ) )
+                                                    {
+                                                        // query for lecturer name 
+                                                        $admin_id = $row['lecturer_id'];
+                                                        $q2 = "SELECT concat(first_name, ' ',  last_name) AS name FROM admin WHERE id = $admin_id ";
+                                                        $r2 = mysqli_query($dbc, $q2);
+                                                        if (mysqli_num_rows($r2) === 1) 
+                                                        {
+                                                            $row2 = mysqli_fetch_array($r2, MYSQLI_ASSOC);
+                                                        }
+                                                        else 
+                                                        {
+                                                            $row2['name'] = '*Anonymous*';
+                                                        }
+                                                    }
+                                            ?>
+                                                        <tr style="color:#333333">
+                                                            <td>
+                                                                <?php echo $count_subject; ?>
+
+                                                            </td>
+                                                            <td class="txt-oflo">
+                                                                <strong style="color:#666666">
+                                                                <?php echo $row['title']; ?>
+                                                                </strong>
+                                                            </td>
+                                                            <td>
+                                                                <?php echo $row['class']; ?>
+                                                            </td>
+                                                            <td>
+                                                                <?php echo $row['term']; ?>
+                                                            </td>
+                                                            <td><span><?php echo $row2['name'].$row['name']; ?></span></td>
+                                                            <?php
+                                                    if ( $user->isTeacher() ) 
+                                                    {
+                                                        echo '<td >';
+                                                        echo '<a  id="view_btn" href="course.php?id='.$row['id'].'">';
+                                                        echo '<span class="glyphicon glyphicon-eye-open"></span> CREATE EXAM</a>';            
+                                                        echo '</td>';
+                                                    }
+                                                ?>
+                                                        </tr>
+                                                        <?php
+                                            $count_subject++;
+                                        } // End of While
+                                    } // End of If $r
+                                    ?>
+                                                </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+            </div>
+            <!-- ============================================================== -->
+            <!-- chat-listing & recent comments -->
+            <!-- ============================================================== -->
+
+        </div>
+        <!-- /.container-fluid -->
+        <footer class="footer text-center"> 2017 &copy; betagrades.com </footer>
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Page Content -->

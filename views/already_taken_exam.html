@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"/>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+<link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css?family=Titillium+Web:400,700,700italic,600italic,300italic,200italic,400italic,600" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="font-awesome-4.6.3/css/font-awesome.min.css" type="text/css"/>
+<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" type="text/css" media="screen"/>
+<title>Exam Already Taken</title>
+<style>
+body{ font-family:"Montserrat";margin:0; padding:0;  backgroun:url(../IMG-20170312-WA0001.jpg) no-repeat; background-color:white}
+p{ text-align:center; color: #999999; font-size:14px}
+h3{ text-align:center; color: #0066CC}
+#notification { font-weight:100;width:100%; border:1px solid #CCC; border-radius:3px; padding:25px; text-align:center; color: #999999; font-size:18px}
+#score { text-align:center; color:#333333; font-size:18px}
+img { margin-bottom:5px}
+</style>
+</head>
+
+<body>
+<div style="padding-top:120px" class="container-fluid">
+<div class="row">
+<div class="col-lg-6 col-lg-offset-3">
+<a href="Home"><img class="center-block" width="200" height="200" src="logo-footer.jpg" /></a>
+<p><b><?php echo strtoupper($matricno); ?></b>, You have already taken this examination. Please Exit the exam hall.</p>
+<span id="score" class="center-block">Score : <?php echo $row1['score'];?></span>
+<h3></h3>
+<div id="notification">Exam Already Taken!</div>
+</div>
+</div>
+</div>
+<script src="../jquery.js"></script>
+<script src="bootstrap/js/bootstrap.min.js"></script>
+</body>
+</html>

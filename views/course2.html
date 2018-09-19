@@ -1,0 +1,392 @@
+<link rel="stylesheet" href="./css/course.css" />
+<div id="delete_course_confirmation">
+    <div class="center-block" style=" border-radius:4px;width:400px; background-color:white; height:230px; margin-top:10%; padding:15px;">
+        <p style="margin-bottom:100px; margin-top:10px">This Subject will be permanently deleted. Are you sure you want to proceed?</p>
+        <?php
+echo '<a id="delete_course_button" data-id="'.$course_id.'" class="btn download_course_button" href="">Delete Subject</a> ';
+?>
+            <button class="download_course_butto" id="cancel_delete_course" type="button">CANCEL</button>
+    </div>
+</div>
+
+<div id="delete_question_confirmation">
+    <div class="center-block" style=" border-radius:4px;width:400px; background-color:white; height:230px; margin-top:10%; padding:15px;">
+        <p id="delete_info" style="margin-bottom:100px; margin-top:10px">The question with ID will be permanently deleted. Are you sure you want to proceed?</p>
+        <?php
+echo '<button type="button" id="delete_question_button" data-question-id="" class="bt download_course_butto red-btn">Delete Question</button> ';
+?>
+            <button class="download_course_butto " id="cancel_delete_question" type="button">CANCEL</button>
+    </div>
+</div>
+
+<div id="update_question_confirmation" style="z-index:100000 ">
+    <div class="center-block" style=" overflo:scroll;background-color:white ;border:1px solid #CCCCCC; height:600px; width:800px; border-radius:2px; margin-top:1%; z-index:10000000">
+        <div style=" font-size:62px;cursor:pointer; display:block; position:absolute; top:px; right:190px; color:#cccccc" id="close_delete_que">&times;</div>
+        <form id="update_question_form" method="post" action="" enctype="multipart/form-data">
+            <!--<input style=" font-size:28px; font-weight:700;border:1px solid #cccccc;float:left; height:100px; clear:both;
+margin:15px; width:95%; padding:15px; background-color:#F2F2F2 " id="que" name="question"
+value="This is the second question for this course?"/>-->
+            <?php include './texteditor.html';?>
+            <textarea id="questionn" style="height:200px; border-radius:2px" class="form-control" name="questionn" cols="50" rows="15" placeholder="*content" />
+            </textarea>
+            <input class="instruction inst_id" type="number" name="instruction_id" value="" hidden="hidden" />
+            <input class="que_id" type="number" value="" hidden="hidden" name="question_id" />
+            <label style="margin:0px 15px">Instruction: </label><input style="padding:3px" id="inst_value" class="instruction" type="text" name="instruction" value="Question instruction" />
+            <div style="float:left; clear:both"><label style="margin:0px 15px">Right Answer:</label><label style="margin-left:290px">Wrong Option:</label></div>
+            <input style="border: 2px solid #00CC33" class="option1" type="text" name="ans" value="Right Answer" />
+            <input class="option2" type="text" name="op1" value="Wrong option" />
+            <div style="float:left; clear:both"><label style="margin:0px 15px">Wrong Option:</label><label style="margin-left:290px">Wrong Option:</label></div>
+            <input class="option3" type="text" name="op2" value="Wrong option" />
+            <input class="option4" type="text" name="op3" value="Wrong option" />
+
+            <button style="float:right; padding:4px; margin-right:25px" class="download_course_button" type="submit">UPDATE QUESTION <span class="glyphicon glyphicon-send"></span></button>
+        </form>
+
+    </div>
+</div>
+
+
+<!-- Page Content -->
+<!-- ============================================================== -->
+<div id="page-wrapper">
+    <div class="container-fluid">
+        <div id="tabs-container">
+            <div class="row bg-title">
+                <div class="col-lg-8 col-md-4 col-sm-4 col-xs-12">
+                    <!--<h4 class="page-title">Manage Students</h4>-->
+                    <!--<ul class="tabs">
+                        <li class="tab-link current" data-tab="tab-1"><h4 class="page-title"><span class="glyphicon glyphicon-plus"></span> ADD QUESTIONS</h4></li>
+                        <li class="tab-link" data-tab="tab-2"><h4 class="page-title"><span class="glyphicon glyphicon-eye-open"></span> VIEW QUESTIONS</h4></li>
+                        <li class="tab-link" data-tab="tab-3"><h4 class="page-title"><span class="glyphicon glyphicon-list-alt"></span> CREATE PASSAGE</h4></li>
+                        <li class="tab-link" data-tab="tab-4"><h4 class="page-title"><span class="glyphicon glyphicon-cog"></span> EXAM SETTINGS</h4></li>
+                    </ul>-->
+                </div>
+                <div class="col-lg-4 col-sm-8 col-md-8 col-xs-12">
+                    <a href="logout.php" target="_blank" class="btn btn-danger pull-right m-l-20 hidden-xs hidden-sm waves-effect waves-light">Logout</a>
+                    <ol class="breadcrumb">
+                        <li><a href="#">SUBJECT</a></li>
+                    </ol>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+            <!-- ============================================================== -->
+            <!-- Different data widgets -->
+            <!-- ============================================================== -->
+            <!-- .row -->
+            <!--<div class="row">
+                <div id="notification" class="center-block ajax_notification_div">
+                    <?php echo 'You are logged in as a <strong>'.$user->getType().'</strong>'; ?>
+                </div>
+            </div>-->
+            <!--/.row -->
+            <!--row -->
+            <!-- /.row -->
+
+            <!-- ============================================================== -->
+            <!-- table -->
+            <!-- ============================================================== -->
+            <div class="row">
+
+                <?php if ($page === 'settings')
+{
+?>
+                <div id="tab-1" class="tab-content current">
+
+                    <div class="col-lg-12" style="margin-top:px;padding:0">
+                        <div class="row white-box">
+
+                            <div class="col-lg-4" id="take_action_container">
+                                <div style="border:1px solid #CCCCCC; padding:15px; padding-top:50px; border-radius:3px; min-height:220px">
+                                    <h4>Actions:</h4>
+                                    <a id="action_delete_button" style="width:200px" class="btn center-block" href="">Delete Subject</a><br />
+                                    <?php
+$q = "SELECT status FROM courses WHERE id = $course_id";
+$r = mysqli_query($dbc, $q);
+$row = mysqli_fetch_array($r, MYSQLI_ASSOC);
+$course_status = $row['status'];
+if ($course_status === 'offline') {
+	$take_course = 'online';
+}else {
+	$take_course = 'offline';
+}
+echo '<a id="take_course_button" style="width:200px" class="btn center-block" data-id="'.$course_id.'" data-take="'.$take_course.'" href="" style="margin-top:10px" type="button">Take Course '.$take_course.'</a>';
+
+?>
+                                        <p style="font-size:12px; color: #666666; margin-left:45px; margin-right:45px; padding-top:5px">Students will have no access to this exam if you take it offline</p>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-4" style="background-color:white;  padding:50px 15px; border:1px solid #cccccc; border-radius:3px;min-height:220px ">
+                                <?php
+$q = "SELECT allocated_time FROM courses WHERE id = $course_id";
+$r = mysqli_query($dbc, $q);
+if ($r) {
+	$row = mysqli_fetch_array($r, MYSQLI_ASSOC);
+	$time_allocated = $row['allocated_time'];
+}
+?>
+                                    <div class="row">
+
+                                        <div class="col-lg-1"><span style="color:#CC3300" class="glyphicon glyphicon-time"></span></div>
+                                        <div class="col-lg-10">
+                                            <p>Allocated time for this course is : <strong id="alloc_time"><?php echo $time_allocated;?></strong> minute(s).<br />
+                                                <span style="color:#999999">Set allocated time for this exam: </span></p>
+                                            <form id="allocated_time_form" style="display:block; margin-top:20px" method="get" action="">
+                                                <input id="input_allocated_time" style="width:50px" type="number" name="allocated_time" />
+                                                <input id="input_course_id" name="course_id" type="number" value="<?php echo $course_id; ?>" hidden="hidden" />
+                                                <button class="red-btn" type="submit" name="submit" value="allocated_time">Set Time</button>
+                                            </form>
+                                        </div>
+                                    </div>
+
+                            </div>
+                            <div class="col-lg-4">
+                                <div style="background-color:white; padding:15px 15px; border:1px solid #cccccc; border-radius:3px ">
+                                    <div class="row">
+                                        <div class="col-lg-1"><span style="color:#00a65a" class="glyphicon glyphicon-folder-open"></span></div>
+                                        <div class="col-lg-10">
+                                            <?php
+// querying the database for the total number
+// of questions available for selected course
+// $num_of_questions = number_of_course_question($course);
+$q = "SELECT count(*) AS num_of_questions FROM questions WHERE course_id = $course_id";
+$q = "SELECT count(*) AS num_of_questions, IFNULL( questions_to_answer, count(*)) AS questions_to_answer FROM questions q INNER JOIN courses c ON q.course_id = c.id WHERE course_id = $course_id";
+$r = mysqli_query($dbc, $q);
+if ($r){
+	$row = mysqli_fetch_array($r, MYSQLI_ASSOC);
+	extract($row);
+}
+
+echo '<div class="">
+Available questions: <strong>'. $num_of_questions . '</strong>
+Questions to answer: <strong id="q_to_anss">' .$questions_to_answer. '</strong></div><br/>';
+?>
+
+                                                <form id="num_of_questions_form" method="get" action="../course.php">
+                                                    <p>Select the number of random questions to ask students: </p>
+                                                    <p style="color:#999999">The system automatically assumes all. </p>
+                                                    <input id="input_course_id" name="id" hidden="hidden" value="<?php echo $course_id ;?>" />
+                                                    <input id="input_q_to_ans" name="action" hidden="hidden" value="questions_to_be_answered" />
+                                                    <input id="num_of_q" style="width:45px" min="1" max="<?php echo $num_of_questions; ?>" name="num_of_q" type="number" /> <span style="display:none">  out of <?php echo '<strong>'. $num_of_questions . '</strong>'  ?> questions.</span>
+                                                    <button class="green-btn" type="submit"> GO! </button>
+                                                </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <?php } ?>
+
+
+                <?php if ($page === 'view-questions')
+{
+    ?>
+                <div id="tab-1" class="tab-content current">
+                    <?php
+                                $q = "SELECT * FROM questions WHERE course_id = $course_id ORDER BY `id` DESC";
+                                $r = mysqli_query($dbc, $q);
+                                $key = CRYPT_KEY;
+								$num_of_available_questions = mysqli_num_rows($r);
+                                echo 'There are <strong data-num="'.$num_of_available_questions.'" id="num_of_available_questions">'.$num_of_available_questions.'</strong> questions for this subject.';
+                                if ($num_of_available_questions>0){
+                                ?>
+                        <table class="table" id="questions_table" styl="margin:0px; border-radius:4px; border-color:#999999" borde="1">
+                            <tr height="50" style="color:black" bgcolor="#ccc" align="center">
+                                <td width="35" colspan="1">ID</td>
+                                <td width="1165" colspan="2">Question</td>
+                                <td width="750" colspan="2"><strong>True answer</strong></td>
+                                <td width="750" colspan="2">Wrong Option</td>
+                                <td width="750" colspan="2">Wrong Option</td>
+                                <td width="750" colspan="2">Wrong Option</td>
+                                <td width="150" colspan="2">Actions</td>
+                            </tr>
+                            <?php
+                                }
+                                 if ($r) {
+                                    while ($row = mysqli_fetch_array($r, MYSQLI_ASSOC)) {
+
+                                        /*$question = decrypt($row['question'], $key);
+                                        $answer_true = decrypt($row['answer_true'], $key);
+                                        $option1 = decrypt($row['option1'], $key);
+                                        $option2 = decrypt($row['option2'], $key);
+                                        $option3 = decrypt($row['option3'], $key);
+                                        $option4 = decrypt($row['option4'], $key);*/
+
+                                        $question = $row['question'] ;
+                                        $answer_true =  $row['answer_true'] ;
+                                        $option1 =  $row['option1'] ;
+                                        $option2 =  $row['option2'] ;
+                                        $option3 =  $row['option3'] ;
+                                        $option4 =  $row['option4'] ;
+
+                                        $the_questions = array();
+                                        $the_questions[$option1] = $option1;
+                                        $the_questions[$option2] = $option2;
+                                        $the_questions[$option3] = $option3;
+                                        $the_questions[$option4] = $option4;
+                                        $cc = 1;
+
+                                        echo '<tr class="row_'.$row['id'].'" align="centr" height="35" data-instruction-id="'.$row['instruction_id'].'" style="color:#333">';
+                                        $qI = "SELECT instruction FROM instructions WHERE id = ".$row['instruction_id'];
+                                        $rI = mysqli_query($dbc, $qI);
+                                        if ($rI) {
+                                        $rowI = mysqli_fetch_array($rI, MYSQLI_ASSOC);
+                                        echo '<input class="the_instruction_'.$row['id'].'"  value="'.$rowI['instruction'].'" type="text" hidden="hidden"/>';
+                                        }
+
+                                        echo       '<td width="35" colspan="1">'.$row['id'].'</td>';
+                                         echo       '<td class="question_'.$row['id'].'" width="1165" colspan="2">'.$question.'</td>';
+                                         echo      ' <td class="answer_true'.$row['id'].'" width="750" colspan="2" style="font-weight: bold">'.$answer_true.'</td>';
+
+                                         // do not print column thats equal to true answer - its redundant
+                                        foreach ($the_questions as $k => $v){
+                                                    if(!($k === $answer_true)) {
+                                                        echo '<td class="option'.$cc.'_'.$row['id'].'" width="750" colspan="2">'.$v.'</td>';
+                                                        $cc++;
+                                                    }
+
+                                        }
+                                        echo        '<td width="150" colspan="2"><div style="width:70px; margin-left:10px" class="center-block">
+                                        <a style="padding:4px; margi:10px" class="green-btn action_update_question" href="" data-id="'.$row['id'].'"><span class="glyphicon glyphicon-pencil"></span></a>
+                                        <a style="padding:4px; margi:10px" class="red-btn action_delete_question" href="" data-id="'.$row['id'].'"><span class="glyphicon glyphicon-trash"></span></a>
+                                        </div></td>';
+
+                                        echo '</tr>';
+                                    }
+                                }
+                                ?>
+
+                        </table>
+                </div>
+
+                <?php } ?>
+                <?php if ($page === 'add-passage')
+{
+    ?>
+
+
+                <div id="tab-1" class="tab-content current">
+                    <div class="white-box" style="padding:0; height: 300px">
+                        <div class="col-lg-4" style="border:1px solid #999999; padding:15px; border-radius:2px">
+
+                            <p>You can create a passage for this subject that will then be attached to individual questions in this same subject</p>
+                            <p>This passage will only be displayed along with questions it was attached to.</p>
+                            <p>At the point of adding a particular question, you are given the option to attach a passage you have already created in this section, to the question. The passage attached is then displayed along with the question it was attached
+                                to when exam is being taken.</p>
+                        </div>
+                        <form id="add_passage_form" method="post" action="../course.php" class="col-lg-8 col-lg-offse-2">
+                            <input type="number" name="course_id" value="<?php echo $course_id;?>" hidden="hidden" />
+                            <input type="number" name="lecturer_id" value="<?php $lecturer_id = $_SESSION['admin_id']; echo $lecturer_id;?>" hidden="hidden" />
+                            <input style="width:100%; border-radius:2px; margin-bottom:30px;border:1px solid #999999; padding:10px" type="text" name="title" placeholder="Passage Title" />
+                            <textarea style="height:300px; font-size:34px" name="content" cols="10" rows="15"></textarea>
+                            <button style="float:right; padding:4px; margin-top:15px" type="submit" name="submit" value="submit_passage">Submit Passage</button>
+                        </form>
+                    </div>
+                </div>
+                <?php } ?>
+
+                <?php if (($page === 'questions') || !isset($page))
+{
+    ?>
+                <div id="tab-1" class="tab-content current" style="padding:0">
+
+                    <div class="col-lg-3 white-box" style="margin-top:-35px">
+                        <h4>New Exam:</h4>
+                        <p>Add questions to created exams</p>
+                        <div class="col-lg- " style="margin-top:px">
+
+                            <div class="col-lg-" styl="border:1px solid #cccccc; padding-bottom:15px; margin-top:15px; border-radius:3px; padding:15px">
+                                <p style="margin-top:15px; color:#666666">Click to upload a csv copy of questions and answers</p>
+                                <p>Excel file should be in this format: question, option1, option2, option3, RIGHT ANSWER</p>
+
+                                <form id="upload_img_form" style="display:block; margin-top:20px" action="course.php" method="post" enctype="multipart/form-data">
+                                    <input style="padding:4px; width:100%; background-color:white; border:1px solid #CCCCCC;" type="file" name="csv" id="csv" />
+                                    <input name="course_id" type="number" value="<?php echo $course_id; ?>" hidden="hidden" />
+                                    <button id="upload_btn" type="submit" value="Upload">UPLOAD</button>
+                                </form>
+                            </div>
+
+
+                        </div>
+                    </div>
+                    <div class=" col-lg-9">
+                        <div class="row">
+                            <div class="col-lg-8">
+
+                            </div>
+                            <div class="col-lg-4" style="padding-top:15px">
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12" style="margin-top:-50px">
+                                <div id="add_question_container" style="height:auto; margin-bottom:10px; border:1px solid #cccccc; padding:10px 15px; background-color: #FFFFFF; border-radius:3px; border-top:3px solid #0066CC" class="course">
+                                    <br />
+                                    <p><b>Add Questions manually</b><br /> Note: Options should be inputed correctly. They system will shuffled them accordingly.</p>
+                                    <form method="post" action="course.php" action="" id="insert_question_form" enctype="multipart/form-data">
+                                        <input style="width:100%; margin-right:10px" type="text" name="instruction" placeholder="Question Instruction (if any)" />
+                                        <input type="number" hidden="hidden" value="<?php echo $course_id; ?>" name="course_id" />
+
+                                        <?php include './texteditor.html';?>
+                                        <textarea id="add_que_textarea" style="height:400px !important ; border-radius:2px" class="form-control" name="question" cols="50" rows="15" placeholder="*content" />
+                                        </textarea><br/>
+                                        <!--<div class="fileUpload btn btn-primary">
+    <span>Attach Image <span  class="glyphicon glyphicon-picture"></span></span>
+    <input id="uploadBtn" type="file" class="upload" name="image" />
+</div>-->
+
+                                        <input style="border:none; display:none; background-color:white; margin-top:-15px !important" id="uploadFile" placeholder="Choose File" disabled="disabled" />
+                                        <br/>
+                                        <label style="" for="ans">Right Answer: </label><label style=" float:right" for="op1">Wrong Option: </label><br/>
+                                        <input style="border:2px solid #009933" class=" add_que_input" name="ans" type="text" placeholder="*Right Option.." />
+
+                                        <input style="float:right" class=" add_que_input" name="op1" type="text" placeholder="Wrong Option.." />
+                                        <label style="" for="op2">Wrong Option: </label><label style=" float:right" for="op3">Wrong Option: </label><br/>
+                                        <input class="add_que_input" name="op2" type="text" placeholder="Wrong Option.." />
+                                        <input style="float:right" class=" add_que_input" name="op3" type="text" placeholder="Wrong Option.." />
+                                        <label for="image">Attach Image?</label><input style="border:none; height:35px; " id="uploadBt" type="file" class="uploa" name="image" />
+                                        <?php
+$lecturer_id = $user->getId();
+$q = "SELECT id, title FROM passage WHERE lecturer_id = $lecturer_id AND course_id = $course_id";
+$r = mysqli_query($dbc, $q);
+if ($r){
+if (mysqli_num_rows($r) > 0) {
+echo '<label for="passage_id">Add passage: </label>
+<select name="passage_id">
+<option value="">None</option>';
+while ($rowP = mysqli_fetch_array($r, MYSQLI_ASSOC)){
+echo '<option value="'.$rowP['id'].'">'.$rowP['title'].'</option>';
+}
+echo '</select>';
+}
+}
+?>
+                                            <hr />
+                                            <button name="submit" value="add_question" class="btn" style="padding:10px; margin-top:15px;" type="submit">SUBMIT QUESTION  <span class="glyphicon glyphicon-send"></span></button>
+                                    </form>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <?php } ?>
+                </div>
+                <!-- ============================================================== -->
+                <!-- chat-listing & recent comments -->
+                <!-- ============================================================== -->
+
+            </div>
+            <!-- end of tabs container -->
+        </div>
+        <!-- end of container fluid -->
+        <footer class="footer text-center"> 2017 &copy; betagrades.com </footer>
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Page Content -->
+    <div id="notify_2"></div>
+    <script src="./js/course12.js"></script>

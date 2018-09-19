@@ -1,0 +1,27 @@
+<?php 
+    if ($_SESSION['new_notification'] === 'true')
+    {
+        $notification = $_SESSION['notification'];
+        $_SESSION['new_notification'] = 'false';
+        unset($_SESSION['new_notification']);
+    }
+
+    if (isset($notification))
+    {
+    ?>
+    <div id="notification_tab">
+        <div class="center-block" style=" border-radius:4px;width:400px; background-color:white; min-height:155px; margin-top:10%; padding:15px;">
+            <p id="delete_info" style="margin-bottom:55px; margin-top:10px"><?php echo $notification;?></p>
+            <hr />
+            <button style="float:right; margin-top:-10px" class="download_course_butto " id="remove_notification_tab" type="button">OK</button>
+        </div>
+    </div>
+<?php
+	}
+?>
+
+<script src="<?php echo BASE_URL; ?>jquery.js"></script>
+<script src="<?php echo BASE_URL; ?>bootstrap/js/bootstrap.min.js"></script>
+<script src="<?php echo BASE_URL; ?>js/admin.js"></script>
+</body>
+</html>

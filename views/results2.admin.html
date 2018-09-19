@@ -1,0 +1,168 @@
+<!-- Page Content -->
+<!-- ============================================================== -->
+
+<div id="page-wrapper">
+    <div class="container-fluid">        
+        <div id="tabs-container">                                              
+            <div class="row bg-title">   
+                <div class="col-lg-6 col-md-4 col-sm-4 col-xs-12">
+                    <!--<h4 class="page-title">Exam Results</h4>-->
+                    <ul class="tabs">
+                        <li class="tab-link current" data-tab="tab-1"><h4 class="page-title">RESULTS</h4></li>
+                        <li class="tab-link" data-tab="tab-2"><h4 class="page-title">ANALYSIS</h4></li>
+                    </ul>
+                </div>
+                <div class="col-lg-6 col-sm-8 col-md-8 col-xs-12">
+                    <a href="logout.php" class="btn btn-danger pull-right m-l-20
+                        hidden-xs hidden-sm waves-effect waves-light">LOGOUT</a>
+                    <ol class="breadcrumb">
+                        <li><a href="#">Dashboard</a></li>
+                        <li class="active">RESULTS</li>
+                    </ol>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <div class="row">
+            <div id="tab-2" class="tab-content">
+                <div class="col-md-12"  >
+                    <div class="white-box" style="margin-lef:15px; height:300px">
+                        <form style="margin-lef:15px;" id="analyze_result_form" method="get" action="">
+                            <select style="padding:4px; border-radius:2px" name="course_id">
+                                <option>All Subjects</option>
+                                <?php
+                                    $admin_id = $user->getId();
+                                    if ( ( $user->isAdmin() ) || ( $user->isManager() ) )
+                                    {
+                                        $q = "SELECT id, title, class FROM courses";
+                                    }
+                                    elseif ($user->isTeacher())  
+                                    {
+                                        $q = "SELECT id, title, class FROM courses WHERE lecturer_id = $admin_id";
+                                    }
+                                    $r = mysqli_query($dbc, $q);
+                                    if ($r) 
+                                    {
+                                        while ($row = mysqli_fetch_array($r, MYSQLI_ASSOC)) 
+                                        {
+                                            echo '<option  value="'.$row['id'].'">'.$row['title'].' - ' .$row['class'].'</option>';
+                                        }
+                                    }
+                                ?>
+                            </select>
+                        </form>
+                        <?php
+                            $q = "SELECT count(*) AS results, avg(score) AS average_score, max(score) AS highest_score, min(score) AS lowest_score FROM `student_results`";
+                            if ($user->isTeacher()) 
+                            {
+                                $admin_id = $user->getId();
+                                $q = "SELECT count(*) AS results, avg(score) AS average_score, max(score) AS highest_score, min(score) AS lowest_score FROM `student_results`
+                                INNER JOIN courses ON (courses.id=student_results.course_id) WHERE lecturer_id = $admin_id ";
+                            }
+                            $r = mysqli_query($dbc, $q);
+                            $row = mysqli_fetch_array($r, MYSQLI_ASSOC);
+                            extract($row);
+                        ?>
+                        <div id="analytics_container">
+                            <div class="col-lg-2" style=" float:left;margin:15px;height:150px; background-color:#00a65a ; color:white; padding:15px; border-radius:3px">
+                                <div style="height:45px !important;">Average score for all exams: </div><br><span class="center-block" style=" height:45px;clear:both; font-size:36px; text-align:center">
+                                <?php echo floor($average_score); ?></span>
+                            </div>
+                            <div class="col-lg-2" style=" float:left; margin:15px; height:150px; background-color:#dd4b39; color:white; padding:15px; border-radius:3px">
+                                <div style="height:45px">Number of students who have taken all exams: </div><br><span class="center-block" style=" height:45px;clear:both; font-size:36px; text-align:center">
+                                <?php echo $results; ?></span>
+                            </div>
+                            <div class="col-lg-2" style=" float:left;margin:15px;height:150px;background-color:#00c0ef ; color:white; padding:15px; border-radius:3px">
+                                <div style="height:45px">Highest score in all exams: </div><br><span class="center-block" style=" height:45px;clear:both; font-size:36px; text-align:center">
+                                <?php echo $highest_score; ?></span>
+                            </div>
+                            <div class="col-lg-2" style=" float:left;margin:15px;height:150px; background-color:#00a65a ; color:white; padding:15px; border-radius:3px">
+                                <div style="height:45px !important;">Lowest score in all exams: </div><br><span class="center-block" style=" height:45px;clear:both; font-size:36px; text-align:center">
+                                <?php echo $lowest_score; ?></span>
+                            </div>
+
+                        
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="tab-1" class="tab-content current">                               
+                    <div class="col-md-12" >
+                        <div class="white-box">
+                            <?php
+                            if ( $user->isTeacher() )  
+                            {
+                                echo '<b>Result(s) to Exams created by you</b>';
+                            }
+                            else 
+                            {
+                                echo '<b>Result(s) to all Exams in the database</b>';
+                            }
+                            ?>
+                        </div>
+                    </div>
+                    <?php
+                    if ( ( $user->isAdmin() ) || ( $user->isManager() ) )
+                    { // if user is admin, display results for all courses
+                        $q = "SELECT id, title,  class, term FROM courses ORDER BY `courses`.`id` ASC";
+                    }
+                    else if ($user->isTeacher()) 
+                    { // if user is a lecturer, only display courses he/she created
+                        $admin_id = $user->getId();
+                        $q = "SELECT id, title,  class, term FROM courses WHERE lecturer_id =  $admin_id ORDER BY `courses`.`id` DESC";
+                    }
+                    $r = mysqli_query($dbc, $q);
+                    if ($r) {
+                        while ($row = mysqli_fetch_array($r, MYSQLI_ASSOC)) {
+                            echo '<div class="col-md-12">';
+                            echo '<div class="white-box" style="border-radius:3px;">';
+                            echo '<h4><b>' . $row['title'] . ' - ' .$row['class'].' - '. $row['term']. ' TERM</b></h4>';
+                            $course_id = $row['id'];
+                            $q2 = "SELECT count(*) AS number FROM `student_results` WHERE course_id = $course_id";
+                            $r2 = mysqli_query($dbc, $q2);
+                            if ($r2) 
+                            {
+                                $row2 = mysqli_fetch_array($r2, MYSQLI_ASSOC);
+                                $no_of_students = $row2['number'];
+                                if ($no_of_students < 1) $zero_students = true;
+                                echo '<p>'.$row2['number'].' students have written this exam.</p>';
+                            }
+                            // display option to downlod courses if at least 1 student
+                            // has taken the exam
+                            if (!$zero_students) 
+                            {
+                    ?>
+                                <form target="_blank" class="download_result_form" action="admin.php" method="get">
+                                    <input type="number" hidden="hidden" name="id" value="<?php echo $course_id;?>" />
+                                    <input type="text" hidden="hidden" value="get_course_results" name="action" />
+                                    <select name="type" style="padding:9px; border-radius:4px; border:1px solid #CCCCCC">
+                                        <option value="pdf">Download Result</option>
+                                        <option value="pdf">Download in PDF</option>
+                                        <option value="xls">Download in Excel(XLS)</option>
+                                        <option value="csv">Download in Excel(CSV)</option>
+                                    </select>                                       
+                                </form>
+                    <?php
+                                
+                                
+                            }
+                            else 
+                            {
+                                echo '* <span style="color:#FFBE58">No download available</span> *';
+                                
+                                
+                            }
+                            $zero_students = false;
+                            echo '</div>';
+                            echo '</div>';
+                            
+                        } // End of While
+                    } // End of If $r
+                    ?>
+                </div> <!-- end of row -->
+            </div> <!-- end of tab 2 -->
+        </div> <!-- end of tabs container -->
+    </div> <!-- end of container fluid -->
+    <footer class="footer text-center"> 2017 &copy; Ample Admin brought to you by wrappixel.com </footer>
+</div>
+<!-- ============================================================== -->
+<!-- End Page Content -->

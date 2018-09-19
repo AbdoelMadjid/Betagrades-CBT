@@ -1,0 +1,84 @@
+#ErrorDocument 404 http://localhost/cbt/template/html/404.html
+
+#php_value max_execution_time 3000
+
+#php_value upload_max_filesize 164M
+
+#php_value post_max_size 164M
+
+#php_value memory_limit 164M
+
+
+<IfModule mod_rewrite.c>
+
+Options -MultiViews
+RewriteEngine on
+
+    
+# Redirect mobile requests to the mobile site
+    
+# (but don't redirect when accessing certain directories)
+    
+#RewriteCond %{REQUEST_URI} !^/images [NC]
+    
+#RewriteCond %{HTTP_USER_AGENT} "android|blackberry|googlebot-mobile|iemobile|ipad|iphone|ipod|opera mobile|palmos|webos" [NC]
+    
+#RewriteRule ^(.*)$ http://demo.betagrades.com/mobile.html [R=302,L]
+	
+#RewriteRule ^(.*)$ http://demo.betagrades.com/$1 [R=302,L]
+
+    
+# If it is not a file or folder, rewrite to index.php?page=<value>
+    
+#RewriteCond %{REQUEST_FILENAME} !-f
+    
+#RewriteCond %{REQUEST_FILENAME} !-d
+    
+#RewriteRule ^(.*)$ index.php?page=$1 [L,QSA]
+
+RewriteCond %{HTTP_HOST} ^demo\.betagrades\.com [NC]
+
+RewriteCond %{SERVER_PORT} 80 
+
+RewriteRule ^(.*)$ https://demo.betagrades.com/$1 [R,L]
+
+
+
+#RewriteRule ^admin(.)php/?$ admin.php [L]
+
+#RewriteRule ^course/([0-9]+)?$ course.php?id=$1 [L]
+
+RewriteRule ^(A|a)dmin/?$ admin.php [L]
+
+RewriteRule ^(A|a)dmin/students?$ admin.php?page=students [L]
+
+RewriteRule ^(A|a)dmin/subjects?$ admin.php?page=courses [L]
+
+RewriteRule ^cbt/admin/Ajax/students.php?page=list?$ Ajax/students.php?page=list [L]
+
+RewriteRule ^(H|h)ome?$ index.php [L]
+
+RewriteRule ^(E|e)xam?$ exam.php [L]
+
+RewriteRule ^(E|e)xam/(E|e)nd/?$ end_exam.php [L]
+
+RewriteRule ^/?$ index.php [L]
+
+# For all invalid links (non existing files)
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# do this
+RewriteRule ^(.*)$ http://localhost/cbt/404.php [L]
+#RewriteRule .* - [L,R=404]
+
+
+# restricting access to the admin page to the local intranet
+
+# RewriteCond %{REMOTE_ADDR} !^192\.168\.43\.[0-9]+$
+
+# RewriteRule admin/ - [F]
+
+
+
+</IfModule>

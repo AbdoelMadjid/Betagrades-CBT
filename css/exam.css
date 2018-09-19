@@ -1,0 +1,63 @@
+
+body { padding:0; margin:0;  font-famil:"Montserrat"; font:"Roboto Black"; backgroun:url(../logo-footer.jpg) no-repeat center}
+#left_dashboard { box-shadow:0.5px 0px 15px #CCCCCC; min-height:800px;}
+#dashboard_student_details{ margin-bottom:30px }
+#dashboard_student_details span { color: #999999;}
+#dashboard_student_details span#key { float:left; width:70px; margin-right:5px; clear:left}
+#dashboard_student_details span#value { float:left; width:200px;}
+#dashboard_question_navigation, #dashboard_end_exam { float:left; clear:both; width:100%; margin-bottom:30px}
+#dashboard_question_navigation div { padding:0 !important}
+#dashboard_question_navigation div button { border:none;margin-bottom:15px;border:#999999 1px solid; height:40px; width:80%; border-radius:2px;}
+button#end_exam_button, .submit_button  {border:1px solid #0066FF !important;background-color: #0066FF;transition:0.3s;width:70%; floa:left; clear:both; border:none; padding:3px; border-radius:3px; color:white; font-size:20px} 
+button#end_exam_button:hover, .submit_button:hover{ background-color:white;color:#0066FF; border:1px solid #0066FF}
+#exam_details_and_time {  padding:15px; border-bottom:1px solid #DDDDDD; height:70px}
+#exam_title_and_instruction { float:left; width:65%;}
+#exam_time_remaining  { float:right; width:30%;}
+#exam_title_and_instruction h4, #exam_title_and_instruction p  { margin-top:0; padding-left:45px}
+#content_container #content { paddin:45px}
+#content { height:auto; border:1px solid #dddddd; margin:30px; border-radius:4px; margin-bottom:15px}
+#content label { font-size:16px;margin-bottom:15px;padding:5px; font-weight:100; color:#666666;float:left;min-height:85px; border:1px solid #dddddd; width:80%;  border-radius:3px; border-bottom-left-radius:0px;border-top-left-radius:0px;}
+#content label { }
+#content #radio_container{ border-radius:3px;padding:5px;float:left; border:1px solid #dddddd; height:40px; border-top-right-radius:0px;  border-bottom-right-radius:0px; border-right:none}
+#content #radio_container span { font-weight:bold; margin-right:10px; margin-left:10px}
+#question_count {padding:15px; border-bottom:1px solid #dddddd; margin-top:0;}
+#question { color:#333333; padding:10px 35px}
+.submit_button{ width:auto; font-size:14px; padding:9px; margin:0; }
+#current_question { background-color:#0066CC; color:white; border:none !important}
+#null_button { background-color:#CCCCCC; color:#333333; border:none !important}
+.answered_question { background-color: #999999; border:1px solid black}
+/* Style the buttons that are used to open and close the accordion panel */
+button#end_exam_button,#pre_end_exam_button {background-color: #f33155; border:1px solid #f33155 !important;transition:0.3s;width:70%; floa:left; clear:both; border:none; padding:3px; border-radius:3px; color:white; font-size:20px }
+button#end_exam_button:hover,#pre_end_exam_button:hover{ background-color:white;color:#f33155; border:1px solid #f33155}
+button.accordion, div.accordion {
+    background-color: #eee;
+    color: #444;
+    cursor: pointer;
+    padding: 10px;
+    width: 100%;
+    text-align: left;
+    border: none;
+    outline: none;
+    transition: 0.4s;
+	border-top-left-radius:3px;
+	border-top-right-radius:3px;
+}
+
+/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+button.accordion.active, button.accordion:hover, div.accordion.active, div.accordion:hover {
+    background-color: #ddd;
+}
+
+/* Style the accordion panel. Note: hidden by default */
+div.panel {
+    padding: 0 18px;
+    background-color: white;	
+	height:200px; 
+	overflow:scroll;
+    max-height: 0;
+    transition: max-height 0.5s ease-out;
+}
+#end_exam_confirmation{
+	position:fixed; height:100%; width:100%; background-color: rgba(0,0,0,0.7); z-index:1; top:0; display:none; left:0;
+
+}

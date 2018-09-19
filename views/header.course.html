@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" type="image/png" sizes="16x16" href="./logo-footer.png">
+    <title>Subject | BetaGrades</title>
+    <!-- Bootstrap Core CSS -->
+    <link href="./template/html/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Menu CSS -->
+    <link href="./template/plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.css" rel="stylesheet">
+    <!-- toast CSS -->
+    <link href="./template/plugins/bower_components/toast-master/css/jquery.toast.css" rel="stylesheet">
+    <!-- morris CSS -->
+    <link href="./template/plugins/bower_components/morrisjs/morris.css" rel="stylesheet">
+    <!-- chartist CSS -->
+    <link href="./template/plugins/bower_components/chartist-js/dist/chartist.min.css" rel="stylesheet">
+    <link href="./template/plugins/bower_components/chartist-plugin-tooltip-master/dist/chartist-plugin-tooltip.css" rel="stylesheet">
+    <!-- animation CSS -->
+    <link href="./template/html/css/animate.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="./template/html/css/style.css" rel="stylesheet">
+    <!-- color CSS -->
+    <link href="./template/html/css/colors/default.css" id="theme" rel="stylesheet">
+
+
+    <style>
+        .jq-toast-wrap,
+        .top-right {
+            display: none;
+        }
+        
+        #delete_teacher_confirmation {
+            position: fixed;
+            height: 100%;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 100000;
+            top: 0;
+            display: none;
+        }
+        
+        #create_teacher_form label,
+        #create_course_form label {
+            float: left;
+            clear: both;
+            color: #666666;
+            font-weight: 300
+        }
+        
+        #create_teacher_form input,
+        #create_course_form input {
+            margin-bottom: 10px;
+            float: left;
+            clear: both;
+            border: none;
+            border-style color;
+            border-bottom: 1px solid #CCCCCC;
+            padding: 4px;
+            width: 300px
+        }
+        
+        #create_teacher_form button,
+        #create_course_form button,
+        .download_course_button {
+            transition: 0.3s;
+            border-radius: 3px;
+            border: 1px solid #0066CC;
+            float: left;
+            clear: both;
+            margin-top: 15px;
+            padding: 7px;
+            color: white;
+            background-color: #0066CC
+        }
+        
+        #create_teacher_form button:hover,
+        #create_course_form button:hover,
+        .download_course_button:hover {
+            background-color: white;
+            color: #0066CC;
+            text-decoration: none
+        }
+        
+        #create_teacher_form button:hover,
+        #create_course_form button:hover {
+            background-color: white;
+            color: #0066CC;
+            text-decoration: none
+        }
+        
+        #create_teacher_form button,
+        #create_course_form button {
+            width: 100%;
+            transition: 0.3s;
+            border-radius: 20px;
+            border: 1px solid #0066CC;
+            float: left;
+            clear: both;
+            margin-top: 15px;
+            padding: 7px;
+            color: white;
+            background-color: #0066CC
+        }
+        
+        .download_course_button {
+            display: block;
+            clear: none;
+            margin-right: 15px;
+            margin-top: 0;
+            font-size: 11px;
+            padding: 4px
+        }
+        
+        #delete_btn {
+            border-radius: 3px;
+            padding: 6px;
+            background-color: #dd4b39;
+            color: white;
+            margin-right: 15px;
+            margin-top: 0;
+            font-size: 11px;
+        }
+        
+        #view_btn {
+            transition: 0.3s;
+            border-radius: 3px;
+            padding: 6px;
+            background-color: #00a65a;
+            color: white;
+            margin-right: 15px;
+            margin-top: 0;
+            font-size: 11px;
+        }
+        
+        #view_btn:hover {
+            background-color: #00ca6d;
+            text-decoration: none;
+        }
+        
+        #create_teacher_form,
+        #create_course_form {
+            borde: 1px solid #ccc;
+            border: none;
+            border-style color;
+            border-to: 4px solid #0066CC;
+            width: 400px;
+            height: 400px;
+            padding: 45px;
+            border-radius: 4px
+        }
+        
+        #create_course_form select {
+            border: none;
+            border-bottom: 1px solid #CCCCCC;
+        }
+        
+        #notification {
+            background-color: #00a65a;
+            border: none;
+            border-bottom: 5px solid #006600;
+            color: white
+        }
+        
+        #analytics_container>div:hover,
+        .download_results_container:hover {
+            transition: 0.3s;
+            display: block;
+            box-shadow: 2px 1px 6px #CCCCCC
+        }
+        
+        .red-btn {
+            background-color: #CC3300;
+            border: 1px solid #CC3300;
+            color: white;
+            border-radius: 2px;
+        }
+        
+        .red-btn:hover {
+            background-color: white;
+            color: #CC3300
+        }
+        
+        .red-btn:active {
+            text-decoration: none;
+            color: white
+        }
+        
+        .green-btn {
+            background-color: #00a65a;
+            border: 1px solid #00a65a;
+            color: white;
+            border-radius: 2px;
+        }
+        
+        .green-btn:hover {
+            background-color: white;
+            color: #00a65a
+        }
+        
+        .green-btn:active {
+            text-decoration: none;
+            color: white
+        }
+        
+        #delete_course_confirmation,
+        #delete_question_confirmation,
+        #update_question_confirmation {
+            position: fixed;
+            height: 100%;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 10000000;
+            top: 0;
+            display: none;
+        }
+        
+        #tabs-container ul.tabs {
+            margin: 0px;
+            padding: 0px;
+            list-style: none;
+            border-bottom: 1px solid #EBEBEB
+        }
+        
+        #tabs-container ul.tabs li {
+            border-bottom: 2px solid white;
+            background: none;
+            color: #222;
+            display: inline-block;
+            margin: 0px 15px;
+            padding-to: 7px;
+            padding-botto: 7px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        
+        #tabs-container ul.tabs li:first-child {
+            margin-left: 0
+        }
+        
+        #tabs-container ul.tabs li.current {
+            backgroun: #ededed;
+            border-bottom: 2px solid #0066CC;
+            color: #0066CC;
+        }
+        
+        #tabs-container .tab-content {
+            display: none;
+            background: white;
+            paddin: 15px;
+            height: auto;
+            transition: 0.7s;
+        }
+        
+        #tabs-container .tab-content.current {
+            display: inherit;
+        }
+        
+        #register_student_form {
+            padding: 15px;
+            width: 400px;
+            height: 520px;
+            borde: 1px solid #CCCCCC;
+            border-radiu: 3px;
+            border-to: 3px solid #0066CC
+        }
+        
+        #register_student_form label,
+        #register_student_form input,
+        #register_student_form select,
+        #register_student_form button {
+            float: left;
+            clear: both
+        }
+        
+        #register_student_form input,
+        #register_student_form select {
+            margin-bottom: 10px;
+            width: 100%;
+            padding: 4px;
+            border-radius: 2px;
+            border: none;
+            border-bottom: 1px solid #CCCCCC
+        }
+        
+        #register_student_form button {
+            border-radius: 20px;
+            margin-top: 30px;
+            transition: 0.3s;
+            width: 100%;
+            background-color: #0066CC;
+            color: white;
+            padding: 5px;
+            border: 2px solid #0066CC
+        }
+        
+        #register_student_form button:hover {
+            background-color: white;
+            color: #0066CC
+        }
+        
+        #register_student_form select {
+            padding-left: 0px
+        }
+        
+        #notify_2 {
+            position: fixed;
+            right: 40%;
+            top: -70px;
+            height: 70px;
+            width: 270px;
+            background-color: #0066CC;
+            border-bottom-right-radius: 3px;
+            border-bottom-left-radius: 3px;
+            padding: 10px;
+            z-index: 100000000000;
+            display: block;
+        }
+    </style>
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+</head>
+
+<body class="fix-header">
+    <!-- ============================================================== -->
+    <!-- Preloader -->
+    <!-- ============================================================== -->
+    <div class="preloader">
+        <svg class="circular" viewBox="25 25 50 50">
+            <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" />
+        </svg>
+    </div>
+    <!-- ============================================================== -->
+    <!-- Wrapper -->
+    <!-- ============================================================== -->
+    <div id="wrapper">
+        <!-- ============================================================== -->
+        <!-- Topbar header - style you can find in pages.scss -->
+        <!-- ============================================================== -->
+        <nav class="navbar navbar-default navbar-static-top m-b-0">
+            <div class="navbar-header">
+                <div class="top-left-part">
+                    <!-- Logo -->
+                    <a class="logo" href="index.php">
+                        <!-- Logo icon image, you can use font-icon also --><b>
+                        <!--This is dark logo icon--><!--<img src="./template/plugins/images/admin-logo.png" alt="home" class="dark-logo" />--><!--This is light logo icon--><!--<img src="./template/plugins/images/admin-logo-dark.pn" alt="home" class="light-logo" />-->
+                     </b>
+                        <!-- Logo text image you can use text also --><span class="hidden-xs">
+                        <!--This is dark logo text--><img src="./template/plugins/images/admin-text.png" alt="home" class="dark-logo" /><!--This is light logo text--><img style="margin-bottom:15px; position:absolute" src="./logo-footer.jpg" width="150" height="120" alt="home" class="light-logo center-block" />
+                     </span> </a>
+                </div>
+                <!-- /Logo -->
+                <ul class="nav navbar-top-links navbar-right pull-right">
+                    <li>
+                        <form role="search" class="app-search hidden-sm hidden-xs m-r-10">
+                            <input type="text" placeholder="Search..." class="form-control"> <a href=""><i class="fa fa-search"></i></a> </form>
+                    </li>
+                    <li>
+                        <a class="profile-pic" href="#"> <img src="./template/plugins/images/users/varun.jpg" alt="user-img" width="36" class="img-circle"><b class="hidden-xs"><?php echo $user->getName(); ?></b></a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-header -->
+            <!-- /.navbar-top-links -->
+            <!-- /.navbar-static-side -->
+        </nav>
+        <!-- End Top Navigation -->
+        <!-- ============================================================== -->
+        <!-- Left Sidebar - style you can find in sidebar.scss  -->
+        <!-- ============================================================== -->
+        <div class="navbar-default sidebar" role="navigation">
+            <div class="sidebar-nav slimscrollsidebar">
+                <div class="sidebar-head">
+                    <h3><span class="fa-fw open-close"><i class="ti-close ti-menu"></i></span> <span class="hide-menu">Navigation</span></h3>
+                </div>
+                <ul class="nav" id="side-menu">
+                    <li style="padding: 70px 0 0;">
+                        <a href="admin.php" class="waves-effect"><i class="fa fa-clock-o fa-fw" aria-hidden="true"></i>ADMIN PAGE</a>
+                    </li>
+                    <li>
+                        <a href="course.php?id=<?= $course_id; ?>&page=questions" class="waves-effect"><span class="glyphicon glyphicon-plus"></span> ADD QUESTIONS</a>
+                    </li>
+                    <li>
+                        <a href="course.php?id=<?= $course_id; ?>&page=view-questions" class="waves-effect"><span class="glyphicon glyphicon-eye-open"></span> VIEW QUESTIONS</a>
+                    </li>
+                    <li>
+                        <a href="course.php?id=<?= $course_id; ?>&page=add-passage" class="waves-effect"><span class="glyphicon glyphicon-list-alt"></span> ADD PASSAGE</a>
+                    </li>
+
+                    <li>
+                        <a href="course.php?id=<?= $course_id; ?>&page=settings" class="waves-effect"><span class="glyphicon glyphicon-cog"></span> EXAM SETTINGS</a>
+                    </li>
+
+                </ul>
+                <div class="center p-20">
+                    <a href="logout.php" class="btn btn-danger btn-block waves-effect waves-light">LOGOUT</a>
+                </div>
+            </div>
+
+        </div>
+        <!-- ============================================================== -->
+        <!-- End Left Sidebar -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->

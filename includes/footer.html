@@ -1,0 +1,77 @@
+<!-- HTML to CLOSE container and row -->
+</div>
+</div>
+
+<!-- HTML for FOOTER -->
+<div  class="navbar-fixed-bottom" id="footerWrapper">
+
+<div id="NotificationWrapper">
+<div id="QueNotification">
+<?php
+if ( $info === true ) {
+echo '<p>Question ' .($_SESSION['qn'] + 1) . ' of ' . sizeof($questions_row) . '</p>';
+echo '</div>';
+echo '<div id="OtherNotification">';
+echo '<p>Matric No: <span style="color:#990000">' .  $matricno . '</span></p>';
+}
+?>
+<?php
+if ( $info === true ) {
+
+  function time_elapsed_A($secs){
+    $bit = array(
+        'y' => $secs / 31556926 % 12,
+        'w' => $secs / 604800 % 52,
+        'd' => $secs / 86400 % 7,
+        'h' => $secs / 3600 % 24,
+        'm' => $secs / 60 % 60,
+        's' => $secs % 60
+        );
+
+    /*foreach($bit as $k => $v)
+        if($v > 0)$ret[] = $v . $k . ':';
+
+    return join(' ', $ret);*/
+	$tt = $secs/ 60 ;
+	return $tt;
+    }
+
+$nowtime = time();
+$time_started = $_SESSION['time_started'];
+$time_to_finish = $_SESSION['time_to_finish'];
+
+
+// time left = minutes given - time expeneded
+// time expended = current time - time strated 
+//echo "time_elapsed : ".time_elapsed_A($nowtime-$time_started)."\n";
+
+// echo ($time_allocated - $oldtime)/60;
+$time_given = ($time_to_finish - $time_started);
+$time_expended = ($nowtime - $time_started);
+$time_left = time_elapsed_A($time_given - $time_expended);
+//$time_allocated = time_elapsed_A($time_allocated);
+?>
+      <h1 class='timer' data-minutes-left=<?php echo $time_left; ?>></h1>
+      <section class='actions'></section>
+
+<?php
+//echo '<p>Time Left: '.$time_left.'</p>';
+//echo $nowtime . ' ' . $oldtime;
+//echo '<p>Time Remining: '.$time_allocated - time_elapsed_A($nowtime-$oldtime).'</p>';
+}
+?>
+</div>
+</div>
+<footer >
+<div class="center-block" id="copyrightWrapper">
+<p>&copy; Electronic Exam 2016 </p>
+</div>
+</footer>
+</div>
+</div>
+<script src="jquery.js"></script>
+<script src="bootstrap.min.js"></script>
+  <script src="../jQuery-Simple-Timer-master/jquery.simple.timer.js"></script>
+  <script src="../jQuery-Simple-Timer-master/examples/dojo.js"></script>
+</body>
+</html>

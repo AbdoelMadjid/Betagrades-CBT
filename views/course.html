@@ -1,0 +1,1056 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"/>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" />
+    <link href="../fonts/Montserrat/MontserratAlternates-Light.otf" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Titillium+Web:400,700,700italic,600italic,300italic,200italic,400italic,600" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="/font-awesome-4.6.3/css/font-awesome.min.css" type="text/css" />
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" type="text/css" />
+    <link rel="shortcut icon" href="logo-footer.jpg" />
+    <title>Exam : </title>
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+            font-family: "Montserrat";
+            fot: "Roboto"
+        }
+        
+        #left_dashboard {
+            box-shadow: 0.5px 0px 15px #CCCCCC;
+            min-height: 1000px;
+        }
+        
+        #dashboard_student_details {
+            margin-bottom: 30px
+        }
+        
+        #dashboard_student_details ul {
+            list-style-type: none;
+            margin-left: -1.1em;
+            bordr: 1px solid red;
+            padding: 0;
+        }
+        
+        #dashboard_student_details ul li:first-child {
+            border-left: 3px solid #0066CC
+        }
+        
+        #dashboard_student_details ul li {
+            border-left: 3px solid white
+        }
+        
+        #dashboard_student_details ul li a {
+            text-decoration: none;
+            display: block;
+            padding: 10px;
+            padding-lef: 45px
+        }
+        
+        #exam_details_and_time {
+            padding: 15px;
+            border-botto: 1px solid #DDDDDD;
+            height: 80px
+        }
+        
+        #exam_title_and_instruction {
+            float: left;
+            width: 65%;
+        }
+        
+        #exam_time_remaining {
+            float: right;
+            width: 30%;
+        }
+        
+        #exam_title_and_instruction h3,
+        #exam_title_and_instruction p {
+            margin-top: 0;
+            padding-left: 45px
+        }
+        
+        #notification {
+            color: #666666;
+            margin-bottom: 45px;
+            border: 1px solid #0066CC;
+            padding: 15px;
+            text-align: center;
+            width: 60%;
+            margin-top: 15px;
+            border-radius: 3px
+        }
+        
+        #upload_img_form button {
+            float: none;
+            clear: none;
+            transition: 0.3s;
+            border-radius: 3px;
+            border: 1px solid #0066CC;
+            margin-top: 15px;
+            padding: 7px;
+            color: white;
+            background-color: #0066CC
+        }
+        
+        #upload_img_form button:hover {
+            background-color: white;
+            color: #0066CC
+        }
+        
+        .btn {
+            transition: 0.3s;
+            border-radius: 2px;
+            border: 1px solid #0066CC;
+            padding: 2px;
+            margin-top: -5px;
+            color: white;
+            background-color: #0066CC
+        }
+        
+        .btn:hover {
+            background-color: white;
+            color: #0066CC
+        }
+        
+        .btn:active {
+            text-decoration: none;
+            color: white
+        }
+        
+        .red-btn {
+            background-color: #CC3300;
+            border: 1px solid #CC3300;
+            color: white;
+            border-radius: 2px;
+        }
+        
+        .red-btn:hover {
+            background-color: white;
+            color: #CC3300
+        }
+        
+        .red-btn:active {
+            text-decoration: none;
+            color: white
+        }
+        
+        .green-btn {
+            background-color: #00a65a;
+            border: 1px solid #00a65a;
+            color: white;
+            border-radius: 2px;
+        }
+        
+        .green-btn:hover {
+            background-color: white;
+            color: #00a65a
+        }
+        
+        .green-btn:active {
+            text-decoration: none;
+            color: white
+        }
+        
+        #add_question_container input {
+            width: 48%;
+            padding: 4px;
+            border-radius: 2px;
+            border: 1px solid #CCCCCC;
+            margin-righ: 10px;
+            margin-bottom: 10px
+        }
+        /*
+ * CSS for tabs go here
+ */
+        
+        #tabs-container ul.tabs {
+            margin: 0px;
+            padding: 0px;
+            list-style: none;
+            border-bottom: 1px solid #EBEBEB
+        }
+        
+        #tabs-container ul.tabs li {
+            border-bottom: 2px solid white;
+            background: none;
+            color: #222;
+            display: inline-block;
+            margin: 0px 15px;
+            padding-top: 7px;
+            padding-bottom: 7px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        
+        #tabs-container ul.tabs li:first-child {
+            margin-left: 0
+        }
+        
+        #tabs-container ul.tabs li.current {
+            backgroun: #ededed;
+            border-bottom: 2px solid #0066CC;
+            color: #222;
+        }
+        
+        #tabs-container .tab-content {
+            display: none;
+            background: white;
+            padding: 15px;
+            height: auto;
+            transition: 0.7s;
+        }
+        
+        #tabs-container .tab-content.current {
+            display: inherit;
+        }
+        
+        #delete_course_confirmation,
+        #delete_question_confirmation,
+        #update_question_confirmation {
+            position: fixed;
+            height: 100%;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 10000;
+            top: 0;
+            display: none;
+        }
+        
+        .fileUpload {
+            position: relative;
+            overflow: hidden;
+            margi: 10px;
+            margin-bottom: 15px;
+        }
+        
+        .fileUpload input.upload {
+            position: absolute;
+            top: 0;
+            right: 0;
+            margin: 0;
+            padding: 0;
+            font-size: 20px;
+            cursor: pointer;
+            opacity: 0;
+            filter: alpha(opacity=0);
+        }
+        
+        update_question_confirmation for {
+            background-color: white
+        }
+        
+        update_question_confirmation textare#que {
+            background-color: #F2F2F2;
+            padding: 15px;
+            border: none;
+            height: 100px;
+            font-size: 28px;
+            float: left;
+            clear: both;
+            width: 95%;
+            margin: 15px;
+            display: block
+        }
+        
+        #update_question_confirmation input.option5,
+        #update_question_confirmation input.option1,
+        #update_question_confirmation input.option2,
+        #update_question_confirmation input.option3,
+        #update_question_confirmation input.option4 {
+            background-color: #F2F2F2;
+            padding: 10px;
+            border: 1px solid #CCCCCC;
+            border-radius: 3px;
+            height: 80px;
+            clear: left;
+            float: left;
+            width: 365px;
+            margin: 15px
+        }
+        
+        #update_question_confirmation input.option2,
+        #update_question_confirmation input.option4 {
+            clear: right
+        }
+        
+        #update_question_confirmation input.option5 {
+            float: left;
+        }
+        
+        #update_question_confirmation .instruction {
+            background-color: #F2F2F2;
+            width: 95%;
+            border: 1px solid #CCCCCC;
+            float: left;
+            clear: both;
+            margin: 15px;
+            padding: 10px
+        }
+        
+        #update_question_confirmation button.download_course_button {
+            float: left;
+            clear: both;
+            margin: 15px
+        }
+        
+        #update_question_confirmation abel {
+            float: left
+        }
+        
+        #insert_question_form input:not(first-child) {
+            height: 50px
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="delete_course_confirmation">
+        <div class="center-block" style=" border-radius:4px;width:400px; background-color:white; height:230px; margin-top:10%; padding:15px;">
+            <p style="margin-bottom:100px; margin-top:10px">This Subject will be permanently deleted. Are you sure you want to proceed?</p>
+            <?php
+echo '<a id="delete_course_button" data-id="'.$course_id.'" class="btn download_course_button" href="">Delete Subject</a> ';
+?>
+                <button class="download_course_butto" id="cancel_delete_course" type="button">CANCEL</button>
+        </div>
+    </div>
+
+    <div id="delete_question_confirmation">
+        <div class="center-block" style=" border-radius:4px;width:400px; background-color:white; height:230px; margin-top:10%; padding:15px;">
+            <p id="delete_info" style="margin-bottom:100px; margin-top:10px">The question with ID will be permanently deleted. Are you sure you want to proceed?</p>
+            <?php
+echo '<button type="button" id="delete_question_button" data-question-id="" class="bt download_course_butto red-btn">Delete Question</button> ';
+?>
+                <button class="download_course_butto " id="cancel_delete_question" type="button">CANCEL</button>
+        </div>
+    </div>
+
+    <div id="update_question_confirmation">
+        <div class="center-block" style=" overflo:scroll;background-color:white ;border:1px solid #CCCCCC; height:600px; width:800px; border-radius:2px; margin-top:1%">
+            <div style=" font-size:62px;cursor:pointer; display:block; position:absolute; top:px; right:190px; color:#cccccc" id="close_delete_que">&times;</div>
+            <form id="update_question_form" method="post" action="" enctype="multipart/form-data">
+                <!--<input style=" font-size:28px; font-weight:700;border:1px solid #cccccc;float:left; height:100px; clear:both; 
+margin:15px; width:95%; padding:15px; background-color:#F2F2F2 " id="que" name="question" 
+value="This is the second question for this course?"/>-->
+                <?php //include 'texteditor.html';?>
+                <textarea id="que" style="height:200px; border-radius:2px" class="form-control" name="question" cols="50" rows="15" placeholder="*content" />
+                </textarea>
+                <input class="instruction inst_id" type="number" name="instruction_id" value="" hidden="hidden" />
+                <input class="que_id" type="number" value="" hidden="hidden" name="question_id" />
+                <label style="margin:0px 15px">Instruction: </label><input style="padding:3px" id="inst_value" class="instruction" type="text" name="instruction" value="Question instruction" />
+                <div style="float:left; clear:both"><label style="margin:0px 15px">Right Answer:</label><label style="margin-left:290px">Wrong Option:</label></div>
+                <input style="border: 2px solid #00CC33" class="option1" type="text" name="ans" value="Right Answer" />
+                <input class="option2" type="text" name="op1" value="Wrong option" />
+                <div style="float:left; clear:both"><label style="margin:0px 15px">Wrong Option:</label><label style="margin-left:290px">Wrong Option:</label></div>
+                <input class="option3" type="text" name="op2" value="Wrong option" />
+                <input class="option4" type="text" name="op3" value="Wrong option" />
+
+                <button style="float:right; padding:4px; margin-right:25px" class="download_course_button" type="submit">UPDATE QUESTION <span class="glyphicon glyphicon-send"></span></button>
+            </form>
+
+        </div>
+    </div>
+
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-2">
+                <div class="row">
+                    <div id="left_dashboard" class="col-lg-12" style="paddin:0">
+                        <div id="dashboard_student_details">
+                            <img class="center-block" style="margin-top:15px; margin-bottom:45px; width:95%" src="logo-footer.png" />
+                            <div style="margin-top:30px; margin-bottom:30px; color:#666666" id="admin_details">
+                                <span style="margin-right:15px" class="glyphicon glyphicon-user"></span>
+                                <?php echo $_SESSION['admin_name'];?>
+                            </div>
+
+                            <ul>
+                                <li><a href="">MANAGE EXAM</a></li>
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-10">
+                <div class="row">
+                    <div class="col-lg-12" style="padding:0 !important">
+                        <div id="exam_details_and_time">
+                            <?php
+                        $q= "SELECT title, class, term FROM courses WHERE id = $course_id";
+                        $r = mysqli_query($dbc, $q);
+                        if ($r) {
+                            $row = mysqli_fetch_array($r, MYSQLI_ASSOC);
+                            $class = $row['class'];
+                            $term = $row['term'];
+                            $course_title = $row['title'];
+                        }
+                        echo '<h3 style="margin-left:15px">' . $course_title . ' - ' .$class . ' - '.$term.' TERM</h3>';
+                        ?>
+
+                        </div>
+                    </div>
+                </div>
+                <div id="content_container" class="col-lg-12">
+                    <div id="content">
+                        <div id="tabs-container">
+
+                            <ul class="tabs">
+                                <li class="tab-link current" data-tab="tab-1"><span class="glyphicon glyphicon-plus"></span> Add Questions</li>
+                                <li class="tab-link" data-tab="tab-3"><span class="glyphicon glyphicon-eye-open"></span> View Questions</li>
+                                <li class="tab-link" data-tab="tab-2"><span class="glyphicon glyphicon-list-alt"></span> Create Passage</li>
+
+                                <li class="tab-link" data-tab="tab-4"><span class="glyphicon glyphicon-cog"></span> Exam Settings</li>
+                            </ul>
+                            <div id="notification" class="center-block ajax_notification_div">
+                                <?php echo 'You are logged in as a <strong>'.$_SESSION['user'].'</strong>'; ?></div>
+                            <div id="tab-4" class="tab-content">
+
+                                <div class="col-lg-12" style="margin-top:px">
+                                    <div class="row">
+
+                                        <div class="col-lg-4" id="take_action_container">
+                                            <div style="border:1px solid #CCCCCC; padding:15px; padding-top:50px; border-radius:3px; min-height:220px">
+                                                <h4>Actions:</h4>
+                                                <a id="action_delete_button" style="width:200px" class="btn center-block" href="">Delete Subject</a><br />
+                                                <?php
+$q = "SELECT status FROM courses WHERE id = $course_id";
+$r = mysqli_query($dbc, $q);
+$row = mysqli_fetch_array($r, MYSQLI_ASSOC);
+$course_status = $row['status'];
+if ($course_status === 'offline') {
+	$take_course = 'online';
+}else {
+	$take_course = 'offline';
+}
+echo '<a id="take_course_button" style="width:200px" class="btn center-block" data-id="'.$course_id.'" data-take="'.$take_course.'" href="" style="margin-top:10px" type="button">Take Course '.$take_course.'</a>';
+
+?>
+                                                    <p style="font-size:12px; color: #666666; margin-left:45px; margin-right:45px; padding-top:5px">Students will have no access to this exam if you take it offline</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4" style="background-color:white;  padding:50px 15px; border:1px solid #cccccc; border-radius:3px;min-height:220px ">
+                                            <?php
+$q = "SELECT allocated_time FROM courses WHERE id = $course_id";
+$r = mysqli_query($dbc, $q);
+if ($r) {
+	$row = mysqli_fetch_array($r, MYSQLI_ASSOC);
+	$time_allocated = $row['allocated_time'];
+}
+?>
+                                                <div class="row">
+
+                                                    <div class="col-lg-1"><span style="color:#CC3300" class="glyphicon glyphicon-time"></span></div>
+                                                    <div class="col-lg-10">
+                                                        <p>Allocated time for this course is : <strong id="alloc_time"><?php echo $time_allocated;?></strong> minute(s).<br />
+                                                            <span style="color:#999999">Set allocated time for this exam: </span></p>
+                                                        <form id="allocated_time_form" style="display:block; margin-top:20px" method="get" action="">
+                                                            <input id="input_allocated_time" style="width:50px" type="number" name="allocated_time" />
+                                                            <input id="input_course_id" name="course_id" type="number" value="<?php echo $course_id; ?>" hidden="hidden" />
+                                                            <button class="red-btn" type="submit" name="submit" value="allocated_time">Set Time</button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <div style="background-color:white; padding:15px 15px; border:1px solid #cccccc; border-radius:3px ">
+                                                <div class="row">
+                                                    <div class="col-lg-1"><span style="color:#00a65a" class="glyphicon glyphicon-folder-open"></span></div>
+                                                    <div class="col-lg-10">
+                                                        <?php
+// querying the database for the total number
+// of questions available for selected course
+// $num_of_questions = number_of_course_question($course);
+$q = "SELECT count(*) AS num_of_questions FROM questions WHERE course_id = $course_id";
+$q = "SELECT count(*) AS num_of_questions, IFNULL( questions_to_answer, count(*)) AS questions_to_answer FROM questions q INNER JOIN courses c ON q.course_id = c.id WHERE course_id = $course_id";
+$r = mysqli_query($dbc, $q);
+if ($r){
+	$row = mysqli_fetch_array($r, MYSQLI_ASSOC);
+	extract($row);
+}
+
+echo '<div class="">
+Available questions: <strong>'. $num_of_questions . '</strong>
+Questions to answer: <strong id="q_to_anss">' .$questions_to_answer. '</strong></div><br/>';
+?>
+
+                                                            <form id="num_of_questions_form" method="get" action="../course.php">
+                                                                <p>Select the number of random questions to ask students: </p>
+                                                                <p style="color:#999999">The system automatically assumes all. </p>
+                                                                <input id="input_course_id" name="id" hidden="hidden" value="<?php echo $course_id ;?>" />
+                                                                <input id="input_q_to_ans" name="action" hidden="hidden" value="questions_to_be_answered" />
+                                                                <input id="num_of_q" style="width:45px" min="1" max="<?php echo $num_of_questions; ?>" name="num_of_q" type="number" /> <span style="display:none">  out of <?php echo '<strong>'. $num_of_questions . '</strong>'  ?> questions.</span>
+                                                                <button class="green-btn" type="submit"> GO! </button>
+
+                                                            </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                            <div id="tab-3" class="tab-content">
+                                <?php
+                                $q = "SELECT * FROM questions WHERE course_id = $course_id";
+                                $r = mysqli_query($dbc, $q);
+                                $key = CRYPT_KEY;
+								$num_of_available_questions = mysqli_num_rows($r);
+                                echo 'There are <strong data-num="'.$num_of_available_questions.'" id="num_of_available_questions">'.$num_of_available_questions.'</strong> questions for this subject.';
+                                if ($num_of_available_questions>0){
+                                ?>
+                                    <table id="questions_table" style="margin:0px; border-radius:4px; border-color:#999999" border="1">
+                                        <tr height="50" bgcolor="#ccc" align="center">
+                                            <td width="35" colspan="1">ID</td>
+                                            <td width="1165" colspan="2">Question</td>
+                                            <td width="750" colspan="2"><strong>True answer</strong></td>
+                                            <td width="750" colspan="2">Wrong Option</td>
+                                            <td width="750" colspan="2">Wrong Option</td>
+                                            <td width="750" colspan="2">Wrong Option</td>
+                                            <td width="150" colspan="2">Actions</td>
+                                        </tr>
+                                        <?php
+                                }
+                                 if ($r) {
+                                    while ($row = mysqli_fetch_array($r, MYSQLI_ASSOC)) {
+
+                                        $question = decrypt($row['question'], $key);
+                                        $answer_true = decrypt($row['answer_true'], $key);
+                                        $option1 = decrypt($row['option1'], $key);
+                                        $option2 = decrypt($row['option2'], $key);
+                                        $option3 = decrypt($row['option3'], $key);
+                                        $option4 = decrypt($row['option4'], $key);
+
+                                        $the_questions = array();
+                                        $the_questions[$option1] = $option1;
+                                        $the_questions[$option2] = $option2;
+                                        $the_questions[$option3] = $option3;
+                                        $the_questions[$option4] = $option4;
+                                        $cc = 1;
+
+                                        echo '<tr class="row_'.$row['id'].'" align="centr" height="35" data-instruction-id="'.$row['instruction_id'].'">';
+                                        $qI = "SELECT instruction FROM instructions WHERE id = ".$row['instruction_id'];
+                                        $rI = mysqli_query($dbc, $qI);
+                                        if ($rI) {
+                                        $rowI = mysqli_fetch_array($rI, MYSQLI_ASSOC);
+                                        echo '<input class="the_instruction_'.$row['id'].'"  value="'.$rowI['instruction'].'" type="text" hidden="hidden"/>';
+                                        }
+
+                                        echo       '<td width="35" colspan="1">'.$row['id'].'</td>';
+                                         echo       '<td class="question_'.$row['id'].'" width="1165" colspan="2">'.$question.'</td>';
+                                         echo      ' <td class="answer_true'.$row['id'].'" width="750" colspan="2">'.$answer_true.'</td>';
+
+                                         // do not print column thats equal to true answer - its redundant
+                                        foreach ($the_questions as $k => $v){
+                                                    if(!($k === $answer_true)) {
+                                                        echo '<td class="option'.$cc.'_'.$row['id'].'" width="750" colspan="2">'.$v.'</td>';
+                                                        $cc++;
+                                                    }
+
+                                        }
+                                        echo        '<td width="150" colspan="2"><div style="width:70px; margin-left:10px" class="center-block">
+                                        <a style="padding:4px; margi:10px" class="green-btn action_update_question" href="" data-id="'.$row['id'].'"><span class="glyphicon glyphicon-pencil"></span></a>
+                                        <a style="padding:4px; margi:10px" class="red-btn action_delete_question" href="" data-id="'.$row['id'].'"><span class="glyphicon glyphicon-trash"></span></a>
+                                        </div></td>';
+
+                                        echo '</tr>';
+                                    }
+                                }
+                                ?>
+
+                                    </table>
+                            </div>
+                            <div id="tab-2" class="tab-content">
+                                <div class="col-lg-4" style="border:1px solid #999999; padding:15px; border-radius:2px">
+                                    <p>You can create a passage for this subject that will then be attached to individual questions in this same subject</p>
+                                    <p>This passage will only be displayed along with questions it was attached to.</p>
+                                    <p>At the point of adding a particular question, you are given the option to attach a passage you have already created in this section, to the question. The passage attached is then displayed along with the question it
+                                        was attached to when exam is being taken.</p>
+                                </div>
+                                <form id="add_passage_form" method="post" action="../course.php" class="col-lg-8 col-lg-offse-2">
+                                    <input type="number" name="course_id" value="<?php echo $course_id;?>" hidden="hidden" />
+                                    <input type="number" name="lecturer_id" value="<?php $lecturer_id = $_SESSION['admin_id']; echo $lecturer_id;?>" hidden="hidden" />
+                                    <input style="width:100%; border-radius:2px; margin-bottom:30px;border:1px solid #999999; padding:10px" type="text" name="title" placeholder="Passage Title" />
+                                    <textarea style="height:300px; font-size:34px" name="content" cols="10" rows="15"></textarea>
+                                    <button style="float:right; padding:4px; margin-top:15px" type="submit" name="submit" value="submit_passage">Submit Passage</button>
+                                </form>
+                            </div>
+
+                            <div id="tab-1" class="tab-content current">
+
+                                <div class=" col-lg-3">
+                                    <h4>New Exam:</h4>
+                                    <p>Add questions to created exams</p>
+                                    <div class="col-lg-" style="margin-top:px">
+
+                                        <div class="col-lg-" style="border:1px solid #cccccc; padding-bottom:15px; margin-top:15px; border-radius:3px; padding:15px">
+                                            <p style="margin-top:15px; color:#666666">Click to upload a csv copy of questions and answers</p>
+                                            <p>Excel file should be in this format: question, option1, option2, option3, RIGHT ANSWER</p>
+
+                                            <form id="upload_img_form" style="display:block; margin-top:20px" action="../Ajax/upload_image.php" method="post" enctype="multipart/form-data">
+                                                <input style="padding:4px; width:100%; background-color:white; border:1px solid #CCCCCC;" type="file" name="csv" id="csv" />
+                                                <input name="course_id" type="number" value="<?php echo $course_id; ?>" hidden="hidden" />
+                                                <button id="upload_btn" type="submit" value="Upload">UPLOAD</button>
+                                            </form>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                                <div class=" col-lg-9">
+                                    <div class="row">
+                                        <div class="col-lg-8">
+
+                                        </div>
+                                        <div class="col-lg-4" style="padding-top:15px">
+
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-12" style="margin-top:-50px">
+                                            <div id="add_question_container" style="height:auto; margin-bottom:10px; border:1px solid #cccccc; padding:10px 15px; background-color: #FFFFFF; border-radius:3px; border-top:3px solid #0066CC" class="course">
+                                                <br />
+                                                <p><b>Add Questions manually</b><br /> Note: Options should be inputed correctly. They system will shuffled them accordingly.</p>
+                                                <form method="post" action="course.php" action="" id="insert_question_form" enctype="multipart/form-data">
+                                                    <input style="width:100%; margin-right:10px" type="text" name="instruction" placeholder="Question Instruction (if any)" />
+                                                    <input type="number" hidden="hidden" value="<?php echo $course_id; ?>" name="course_id" />
+
+                                                    <?php include 'texteditor.html';?>
+                                                    <textarea id="add_que_textarea" style="height:400px !important ; border-radius:2px" class="form-control" name="question" cols="50" rows="15" placeholder="*content" />
+                                                    </textarea><br/>
+                                                    <!--<div class="fileUpload btn btn-primary">
+    <span>Attach Image <span  class="glyphicon glyphicon-picture"></span></span>
+    <input id="uploadBtn" type="file" class="upload" name="image" />
+</div>-->
+
+                                                    <input style="border:none; display:none; background-color:white; margin-top:-15px !important" id="uploadFile" placeholder="Choose File" disabled="disabled" />
+                                                    <br/>
+                                                    <label style="" for="ans">Right Answer: </label><label style=" float:right" for="op1">Wrong Option: </label><br/>
+                                                    <input style="border:2px solid #009933" class=" add_que_input" name="ans" type="text" placeholder="*Right Option.." />
+
+                                                    <input style="float:right" class=" add_que_input" name="op1" type="text" placeholder="Wrong Option.." />
+                                                    <label style="" for="op2">Wrong Option: </label><label style=" float:right" for="op3">Wrong Option: </label><br/>
+                                                    <input class="add_que_input" name="op2" type="text" placeholder="Wrong Option.." />
+                                                    <input style="float:right" class=" add_que_input" name="op3" type="text" placeholder="Wrong Option.." />
+                                                    <label for="image">Attach Image?</label><input style="border:none; height:35px; " id="uploadBt" type="file" class="uploa" name="image" />
+                                                    <?php
+$q = "SELECT id, title FROM passage WHERE lecturer_id = $lecturer_id AND course_id = $course_id";
+$r = mysqli_query($dbc, $q);
+if (mysqli_num_rows($r) > 0) {
+echo '<label for="passage_id">Add passage: </label>
+<select name="passage_id">
+<option value="">None</option>';
+while ($rowP = mysqli_fetch_array($r, MYSQLI_ASSOC)){
+echo '<option value="'.$rowP['id'].'">'.$rowP['title'].'</option>';
+}
+echo '</select>';
+}
+?>
+                                                        <hr />
+                                                        <button name="submit" value="add_question" class="btn" style="padding:10px; margin-top:15px;" type="submit">SUBMIT QUESTION  <span class="glyphicon glyphicon-send"></span></button>
+                                                </form>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+                        </div>
+                        <div id="tab-2" class="tab-content">
+
+                        </div>
+
+                    </div>
+                    <!-- container -->
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+
+    <script src="../jquer.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+
+    <!--<script src="tinymce/js/tinymce/tinymce.min.js"></script>
+<script src="tinymce/js/tinymce/jquery.tinymce.min.js"></script>
+<script type="text/javascript">
+tinyMCE.init({
+        mode : "textareas"
+});
+</script>
+<script type="text/javascript">
+tinyMCE.init({
+        theme : "advanced",
+        mode : "textareas",
+        plugins : "fullpage",
+        theme_advanced_buttons3_add : "fullpage"
+});
+</script>-->
+
+    <script>
+        // JS for tabs
+        $('ul.tabs li').click(function() {
+
+            var tab_id = $(this).attr('data-tab');
+
+            $('ul.tabs li').removeClass('current');
+            $('.tab-content').removeClass('current');
+
+            $(this).addClass('current');
+            $("#" + tab_id).addClass('current');
+
+        })
+    </script>
+
+    <script>
+        $(function() {
+            $('#que').html('Nice');
+
+            $('#close_delete_que').on('click', function(e) {
+                $('#update_question_confirmation').slideToggle(300);
+            });
+            $('.action_update_question').on('click', function(e) {
+                e.preventDefault();
+                var selected_question = $(this);
+                var question_id = selected_question.attr("data-id");
+                $('#update_question_confirmation').slideToggle(300);
+                var instruction_id = $('.row_' + question_id).attr("data-instruction-id");
+                var question = $('.question_' + question_id).html();
+                var option1 = $('.option1_' + question_id).html();
+                var option2 = $('.option2_' + question_id).html();
+                var option3 = $('.option3_' + question_id).html();
+                var answer = $('.answer_true' + question_id).html();
+
+                //$('#update_question_form #que').val(question);
+                $('#update_question_form #que').prepend(question);
+                $('#update_question_form .fr-element p').html(question);
+
+                $('#update_question_form .option1').val(answer);
+
+                $('#update_question_form .option2').val(option1);
+                $('#update_question_form .option3').val(option2);
+                $('#update_question_form .option4').val(option3);
+
+                $('#update_question_form .que_id').attr('value', question_id);
+                $('#update_question_form .inst_id').attr('value', instruction_id);
+                var instruction = $('.the_instruction_' + question_id).val();
+                $('#inst_value').val(instruction);
+
+            });
+
+            $('#update_question_for').on('submit', function(e) {
+                var form = $(this);
+                e.preventDefault();
+
+                $.ajax({
+
+                    url: "Ajax/update_question.php",
+                    type: "POST",
+                    data: new FormData(this),
+                    contentType: false,
+                    processData: false,
+                    success: function(data) {
+                        $('.ajax_notification_div').html('<span style="color:green">' + data + '</span>');
+                        $('html, body').animate({
+                            scrollTop: 0
+                        }, 500);
+                        $('#update_question_confirmation').slideToggle(300);
+
+
+                        // get updated value from input
+                        // append them to table
+                        var question = $('#update_question_form #que').val();
+                        var answer = $('#update_question_form .option1').val();
+                        var option1 = $('#update_question_form .option2').val();
+                        var option2 = $('#update_question_form .option3').val();
+                        var option3 = $('#update_question_form .option4').val();
+                        var question_id = $('.que_id').val();
+                        $('.question_' + question_id).html(question);
+                        $('.option1_' + question_id).html(option1);
+                        $('.option2_' + question_id).html(option2);
+                        $('.option3_' + question_id).html(option3);
+                        $('.answer_true' + question_id).html(answer);
+                        var instruction = $('#inst_value').val();
+                        $('.the_instruction_' + question_id).val(instruction);
+
+                    }
+                });
+
+            });
+
+            $('#delete_question_button').on('click', function(e) {
+                e.preventDefault();
+                var question_id = $(this).attr("data-question-id");
+                var num_of_available_questions = $('#num_of_available_questions').attr("data-num");
+
+                $.get("Ajax/questions.php?id=" + question_id + "&action=delete", function(data) {
+
+                    $('.ajax_notification_div').html(data);
+                    $('.row_' + question_id).hide(1000);
+                    $('#delete_question_confirmation').slideToggle(300);
+                    var new_num_of_available_questions = num_of_available_questions - 1;
+                    if ($('#num_of_available_questions').html(new_num_of_available_questions)) {
+                        $('#num_of_available_questions').attr(data - num, (new_num_of_available_questions - 1));
+                    }
+                    //$('.ajax_notification_div').html(data);
+                    $('#delete_question_confirmation').slideToggle(300);
+                    if ($('.row_' + question_id).hide(1000, function() {
+                            $('.row_' + question_id).remove();
+                        })) {
+                        var new_num_of_available_questions = $('#questions_table tr').length;
+                        $('#num_of_available_questions').html(new_num_of_available_questions - 2);
+                        $('#num_of_available_questions').attr("data-num", new_num_of_available_questions - 2);
+                    }
+                });
+            });
+
+            /*$('#delete_question_button').on('click', function(e) {
+	e.preventDefault();
+	var question_id = $(this).attr("data-question-id");
+	var num_of_available_questions = $('#num_of_available_questions').attr("data-num");
+
+	$.get("Ajax/questions.php?id=" + question_id + "&action=delete", function(data){
+
+		
+		var result = data;
+		var parseData = $.parseJSON(data);
+		var first_element = parseData[0];
+		$('#delete_question_confirmation').slideToggle(300);
+		
+		// convert JSON string to JavaScript Object
+		//var JSONString = '<?php echo $someJSONString;?>';
+		var JSONObject = $.parseJSON(result);
+		console.log(JSONObject); // Dump all data of the object in the console
+		//alert(JSONObject[0]["result"] + ': '+ JSONObject[0]["title"]); 
+		alert(JSONObject[0]["result"]); 
+		// Access object data
+		
+		if (result === "success") {
+			$('.ajax_notification_div').html('Question with ID <strong>'+question_id + '</strong> successfully deleted' + result);
+			if($('.row_'+question_id).hide(1000, function(){
+				$('.row_'+question_id).remove();
+			}) ){
+				var new_num_of_available_questions = $('#questions_table tr').length;
+				$('#num_of_available_questions').html(new_num_of_available_questions-2);
+				$('#num_of_available_questions').attr("data-num", new_num_of_available_questions -2);
+			}
+		}else if (result === "failure") { 
+			$('.ajax_notification_div').html('Could not delete question, Please try again later.' + result);
+			
+		}else if (result === "failures") { 
+			$('.ajax_notification_div').html('Result: ' + result);
+			
+		}
+		
+	});
+});*/
+
+            $('#uploadBtn').on('change', function() {
+                $('#uploadFile').val(this.value);
+            });
+
+
+            $('#upload_img_form').on('submit', function(e) {
+                $("#upload_img_form button").attr("disabled", true);
+                var form = $(this);
+                e.preventDefault();
+
+                $.ajax({
+
+                    url: "Ajax/upload_image.php",
+                    type: "POST",
+                    data: new FormData(this),
+                    contentType: false,
+                    processData: false,
+                    beforeSend: function() {
+                        $('#upload_img_form #upload_btn').val('loading...').attr('type', 'button').after('<img id="loadingGif" class="center-block" style="flot:left; width:20px; height:20px;" src="default.gif" />');
+                    },
+                    complete: function() {
+                        $('#upload_img_form #upload_btn').val('Upload').attr('type', 'submit');
+                        $('img#loadingGif').remove();
+                    },
+                    success: function(data) {
+                        $("#upload_img_form button").attr("disabled", false);
+                        $('.ajax_notification_div').html(data).fadeIn(300);
+                        $('html, body').animate({
+                            scrollTop: 0
+                        }, 500);
+                    }
+                });
+
+            });
+
+            $('#cancel_delete_course').on('click', function(e) {
+                $('#delete_course_confirmation').slideToggle(300);
+            });
+            $('#action_delete_button').on('click', function(e) {
+                e.preventDefault();
+                $('#delete_course_confirmation').slideToggle(300);
+            });
+
+
+            $('#cancel_delete_question').on('click', function(e) {
+                $('#delete_question_confirmation').slideToggle(300);
+            });
+            $('.action_delete_question').on('click', function(e) {
+                e.preventDefault();
+                var id = $(this).attr("data-id");
+                $('#delete_question_button').attr("data-question-id", id);
+                $('#delete_question_confirmation').slideToggle(300);
+                $('#delete_info').html('The question with ID <strong>' + id + '</strong> will be permanently delete. Are you sure you want to proceed?')
+            });
+
+
+            $('#insert_question_form').on('submit', function(e) {
+                var form = $(this);
+                e.preventDefault();
+
+                $.ajax({
+
+                    url: "Ajax/course_post.php",
+                    type: "POST",
+                    data: new FormData(this),
+                    contentType: false,
+                    processData: false,
+                    success: function(data) {
+                        $('.ajax_notification_div').html(data).fadeIn(300);
+                        $('html, body').animate({
+                            scrollTop: 0
+                        }, 500);
+
+                        // clear form values
+
+                        $('input[type=text], textarea, input[type=file]').val('');
+                        $('#insert_question_form textarea').html('');
+                        $('body#tinymce p').html(' ');
+                        $('#insert_question_form #add_que_textarea').html('');
+                        $('#insert_question_form .fr-element p').html('');
+                        if ($('input#uploadBtn').remove()) {
+                            $('.fileUpload').append('<input id="uploadBtn" type="file" class="upload new" name="image" />');
+                            $('#uploadFile').val('');
+                        }
+                        //$('select').find('option').prop("selected", false);
+                        //$('input[type=radio]').prop("checked", false)
+                    }
+                });
+
+            });
+
+            $('#add_passage_form').on('submit', function(e) {
+                var form = $(this);
+                e.preventDefault();
+                var details = $('#add_passage_form').serialize();
+
+
+                $.ajax({
+
+                    url: "Ajax/passage.php",
+                    type: "POST",
+                    data: new FormData(this),
+                    contentType: false,
+                    processData: false,
+                    success: function(data) {
+                        $('.ajax_notification_div').html(data).fadeIn(300);
+                        $('html, body').animate({
+                            scrollTop: 0
+                        }, 500);
+
+                        // clear form values
+
+                        $('input[type=text], textarea, input[type=file]').val('');
+
+                        $('input[type=text], textarea, input[type=file]').val('');
+                        $('#add_passage_form textarea').html('');
+                        $('body#tinymce p').html(' ');
+                        $('#add_passage_form #add_que_textarea').html('');
+                        $('#add_passage_form .fr-element p').html('');
+                    }
+                });
+
+            });
+
+            $('#allocated_time_form').on('submit', function(e) {
+                var form = $(this);
+                e.preventDefault();
+                var id = form.children('#input_course_id').val();
+                var input_allocated_time = form.children('#input_allocated_time').val();
+
+                $.get("course.php?id=" + id + "&action=allocated_time&allocated_time=" + input_allocated_time + "", function(data) {
+
+                    $('.ajax_notification_div').html(data).fadeIn(900);
+                    $('#alloc_time').html(input_allocated_time);
+                    $('html, body').animate({
+                        scrollTop: 0
+                    }, 500);
+
+                });
+
+            });
+
+
+            $('#num_of_questions_form').on('submit', function(e) {
+                var form = $(this);
+                e.preventDefault();
+                input_q_to_ans
+                var input_course_id = form.children('#input_course_id').val();
+                var input_q_to_ans = form.children('#input_q_to_ans').val();
+                var num_of_q = form.children('#num_of_q').val();
+
+                $.get("course.php?id=" + input_course_id + "&action=questions_to_be_answered&num_of_q=" + num_of_q + "", function(data) {
+
+                    $('.ajax_notification_div').html(data).fadeIn(900);
+                    $('#q_to_anss').html(num_of_q);
+                    $('html, body').animate({
+                        scrollTop: 0
+                    }, 500);
+                });
+
+            });
+
+
+
+            $('#take_course_button').on('click', function(e) {
+                var t = $(this);
+                e.preventDefault();
+                var id = $(this).attr("data-id");
+                var action = $(this).attr("data-take");
+
+                $.get("course.php?id=" + id + "&take_course=" + action + "", function(data) {
+                    //t.parents('#theParent').fadeOut(500);
+                    $('.ajax_notification_div').html(data).fadeIn(3000);
+                    var course = 'online';
+                    if (action === 'online') {
+                        var course = 'offline';
+                    }
+                    t.html('take course ' + course).attr('data-id', id).attr('data-take', course);
+                    $('html, body').animate({
+                        scrollTop: 0
+                    }, 500);
+                });
+
+            });
+
+            $('#delete_course_button').on('click', function(e) {
+                e.preventDefault();
+                var id = $(this).attr("data-id");
+                $(location).attr('href', "course.php?id=" + id + "&action=delete")
+
+            });
+        });
+    </script>
+
+</body>
+
+</html>

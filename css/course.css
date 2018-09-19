@@ -1,0 +1,95 @@
+#left_dashboard { box-shadow:0.5px 0px 15px #CCCCCC; min-height:1000px;}
+#dashboard_student_details{ margin-bottom:30px }
+#dashboard_student_details ul { list-style-type:none; margin-left:-1.1em; bordr:1px solid red; padding:0;}
+#dashboard_student_details ul li:first-child {  border-left:3px solid #0066CC}
+#dashboard_student_details ul li {  border-left:3px solid white}
+#dashboard_student_details ul li a { text-decoration:none; display:block; padding:10px; padding-lef:45px}
+#exam_details_and_time {  padding:15px; border-botto:1px solid #DDDDDD; height:80px}
+#exam_title_and_instruction { float:left; width:65%;}
+#exam_time_remaining  { float:right; width:30%;}
+#exam_title_and_instruction h3, #exam_title_and_instruction p  { margin-top:0; padding-left:45px}
+#notification {color:#666666;margin-bottom:45px;border:1px solid #0066CC; padding:15px; text-align:center; width:60%; margin-top:15px; border-radius:3px}
+#upload_img_form button { float:none; clear:none;transition:0.3s;border-radius:3px;border: 1px solid #0066CC;margin-top:15px; padding:7px; color:white; background-color:#0066CC }
+#upload_img_form button:hover { background-color:white; color:#0066CC}
+.btn {transition:0.3s;border-radius:2px;border: 1px solid #0066CC; padding:2px; margin-top:-5px; color:white; background-color:#0066CC }
+.btn:hover { background-color:white; color:#0066CC}
+.btn:active { text-decoration:none; color:white}
+.red-btn { background-color:#CC3300; border:1px solid #CC3300; color:white; border-radius:2px;}
+.red-btn:hover { background-color:white; color:#CC3300}
+.red-btn:active { text-decoration:none; color:white}
+.green-btn { background-color:#00a65a; border:1px solid #00a65a; color:white; border-radius:2px;}
+.green-btn:hover { background-color:white; color:#00a65a}
+.green-btn:active { text-decoration:none; color:white}
+#add_question_container input {width:48%;padding:4px; border-radius:2px; border:1px solid #CCCCCC; margin-righ:10px; margin-bottom:10px}
+
+/*
+ * CSS for tabs go here
+ */
+
+#tabs-container ul.tabs{
+			margin: 0px;
+			padding: 0px;
+			list-style: none;
+			border-bottom:1px solid #EBEBEB
+		}
+
+#tabs-container ul.tabs li
+{
+	border-bottom:2px solid white;
+    background: none;
+    color: #222;
+    display: inline-block;
+    margin: 0px 15px;
+    padding-top: 7px; padding-bottom:7px;
+    cursor: pointer;
+    transition:0.3s;
+}
+#tabs-container ul.tabs li:first-child { margin-left:0}
+#tabs-container ul.tabs li.current
+{
+			backgroun: #ededed;
+			border-bottom:2px solid #0066CC;
+			color: #222;
+}
+
+#tabs-container		.tab-content{
+			display: none;
+			background: white;
+			padding: 15px;
+			height:auto;
+			transition:0.7s;
+		}
+
+#tabs-container	.tab-content.current{
+			display: inherit; 
+		}
+#delete_course_confirmation, #delete_question_confirmation, #update_question_confirmation{
+	position:fixed; height:100%; width:100%; background-color: rgba(0,0,0,0.7); z-index:1000000; top:0; display:none;
+
+}
+.fileUpload {
+    position: relative;
+    overflow: hidden;
+    margi: 10px;
+	margin-bottom:15px;
+}
+.fileUpload input.upload {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+    cursor: pointer;
+    opacity: 0;
+    filter: alpha(opacity=0);
+}
+update_question_confirmation for { background-color:white}
+update_question_confirmation textare#que {background-color:#F2F2F2;padding:15px;border:none; height:100px; font-size:28px; float:left; clear:both; width:95%; margin:15px; display:block}
+#update_question_confirmation input.option5,#update_question_confirmation input.option1, #update_question_confirmation input.option2, #update_question_confirmation input.option3, #update_question_confirmation input.option4 {background-color:#F2F2F2;padding:10px;border:1px solid #CCCCCC; border-radius:3px; height:80px; clear:left; float:left; width:365px; margin:15px}
+#update_question_confirmation input.option2, #update_question_confirmation input.option4 { clear:right}
+#update_question_confirmation input.option5 { float:left;}
+#update_question_confirmation .instruction {background-color:#F2F2F2; width:95%; border:1px solid #CCCCCC; float:left; clear:both; margin:15px; padding:10px}
+#update_question_confirmation button.download_course_button { float:left; clear:both; margin:15px}
+#update_question_confirmation abel { float:left}
+#insert_question_form input:not(first-child) { height:50px}
