@@ -38,6 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 		// if there are no errors,
 		// move uploaded files
 		if (empty($errors)) {
+			http_response_code(201);
 
 			// Create a tmp_name for the file:
 			//$tmp_name = sha1($_FILES['img']['name']) . uniqid('',true);
