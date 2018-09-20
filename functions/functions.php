@@ -121,6 +121,8 @@ function encrypt ($plaintext, $key){
 }
 
 function decrypt ($ciphertext_base64, $key){
+
+	return $ciphertext_base64;
 	
 	# === WARNING ===
 
