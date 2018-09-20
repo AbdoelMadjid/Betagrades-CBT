@@ -272,7 +272,7 @@ Questions to answer: <strong id="q_to_anss">' .$questions_to_answer. '</strong><
 
 
                 <div id="tab-1" class="tab-content current">
-                    <div class="white-box" style="padding:0; height: 300px">
+                    <div class="white-box" style="padding:0; height: 600px">
                         <div class="col-lg-4" style="border:1px solid #999999; padding:15px; border-radius:2px">
 
                             <p>You can create a passage for this subject that will then be attached to individual questions in this same subject</p>
@@ -422,6 +422,14 @@ echo '</select>';
     try {
         var questionn = CKEDITOR.replace('questionn', options);
         question.config.height = 200;
+    }
+    catch(err){
+        //console.error(err)
+    }
+    try{
+        
+        var passage = CKEDITOR.replace('content', options);
+        passage.config.height = 300;
     }
     catch(err){
         //console.error(err)
