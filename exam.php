@@ -5,7 +5,7 @@ require 'functions/functions.php';
 //echo print_r($_SESSION);exit();
 // Autoload classes from "classes" directory:
 function class_loader($class) {
-    require_once('classes/' . $class . '.class.php');
+    require_once('classes/' . strtolower($class) . '.class.php');
 }
 spl_autoload_register('class_loader');
 
