@@ -4,6 +4,11 @@
 
 require '../includes/config.inc.php';
 require MYSQLI ;
+ 
+function getHostAddress2(){ 
+	return $_SERVER['SERVER_NAME'] === "localhost" ? "http://localhost/cbt" : "https://".$_SERVER['SERVER_NAME'];
+
+}
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	$course_id = $_POST['course_id'];
@@ -54,7 +59,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 				// to be used during upload to DB
 				$_SESSION['excel_file_name'] = $tmp_name;
 				$_SESSION['excel_course_id'] = $course_id;
-				echo 'File successfully uploaded '. $tmp_name ;
+				//echo 'File successfully uploaded '. $tmp_name ;
+
+				//$res = "<script>window.parent.CKEDITOR.tools.callFunction(" .$funcNum.  "," . $url . "," .$message. ")</script>"
+
+				//return response()->json(['data' => $res]);
+
+				$url = getHostAddress2()."/editor-images";
+
+				$json = [
+					"uploaded" => 1,
+					"fileName" => "$tmp_name",
+					"url" => "{$url}/{$tmp_name}"
+				];
+				header('Content-Type: application/json');
+				echo json_encode($json);
 				
 				// redirect to index.php where the file will
 				// be extracted into the DB
