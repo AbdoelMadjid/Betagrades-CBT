@@ -21,7 +21,8 @@ $(function() {
         e.preventDefault();
         var selected_question = $(this);
         var question_id = selected_question.attr("data-id");
-        $('#update_question_confirmation').slideDown(300);
+        $('#update_question_confirmation').slideDown(300); 
+        
         var instruction_id = $('.row_' + question_id).attr("data-instruction-id");
         var question = $('.question_' + question_id).html();
         var option1 = $('.option1_' + question_id).html();
@@ -32,6 +33,7 @@ $(function() {
         //$('#update_question_form #que').val(question);
         //$('#update_question_form #questionn').html(encodeURIComponent(question));
         $('#update_question_form #questionn').html(question);
+        CKEDITOR.instances.questionn.setData(question)
         $('#update_question_form .fr-element p').html(question);
 
         $('#update_question_form .option1').val(answer);

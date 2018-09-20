@@ -10,6 +10,7 @@ define('BASE_URI', dirname(dirname(__FILE__)));
 define('BASE_URL', 'http://localhost/cbt/');
 define('EXCEL_DIR', BASE_URI . '\import-excel-file-in-database\\');
 define('IMAGE_DIR', BASE_URI . '\images\\');
+define('EDITOR_IMAGE_DIR', BASE_URI . "/editor-images");
 define('MYSQLI', BASE_URI . '/mysqli.inc.php');
 // These should be true while developing the web site
 define('IS_WARNING_FATAL', true);

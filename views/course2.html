@@ -19,16 +19,18 @@ echo '<button type="button" id="delete_question_button" data-question-id="" clas
     </div>
 </div>
 
-<div id="update_question_confirmation" style="z-index:100000 ">
-    <div class="center-block" style=" overflo:scroll;background-color:white ;border:1px solid #CCCCCC; height:600px; width:800px; border-radius:2px; margin-top:1%; z-index:10000000">
+<div id="update_question_confirmation" style="z-index:10000; ">
+    <div class="center-block" style=" overflo:scroll;background-color:white ;border:1px solid #CCCCCC; height: 98vh;
+    ; width:800px; border-radius:2px; margin-top:1%; z-index:10000000">
         <div style=" font-size:62px;cursor:pointer; display:block; position:absolute; top:px; right:190px; color:#cccccc" id="close_delete_que">&times;</div>
         <form id="update_question_form" method="post" action="" enctype="multipart/form-data">
             <!--<input style=" font-size:28px; font-weight:700;border:1px solid #cccccc;float:left; height:100px; clear:both;
 margin:15px; width:95%; padding:15px; background-color:#F2F2F2 " id="que" name="question"
 value="This is the second question for this course?"/>-->
-            <?php include './texteditor.html';?>
+            <?php //include './texteditor.html';?>
             <textarea id="questionn" style="height:200px; border-radius:2px" class="form-control" name="questionn" cols="50" rows="15" placeholder="*content" />
-            </textarea>
+        kfhjfjhfjjhf    
+        </textarea>
             <input class="instruction inst_id" type="number" name="instruction_id" value="" hidden="hidden" />
             <input class="que_id" type="number" value="" hidden="hidden" name="question_id" />
             <label style="margin:0px 15px">Instruction: </label><input style="padding:3px" id="inst_value" class="instruction" type="text" name="instruction" value="Question instruction" />
@@ -331,9 +333,10 @@ Questions to answer: <strong id="q_to_anss">' .$questions_to_answer. '</strong><
                                         <input style="width:100%; margin-right:10px" type="text" name="instruction" placeholder="Question Instruction (if any)" />
                                         <input type="number" hidden="hidden" value="<?php echo $course_id; ?>" name="course_id" />
 
-                                        <?php include './texteditor.html';?>
+                                        <?php //include './texteditor.html';?>
                                         <textarea id="add_que_textarea" style="height:400px !important ; border-radius:2px" class="form-control" name="question" cols="50" rows="15" placeholder="*content" />
-                                        </textarea><br/>
+                                       
+                                    </textarea><br/>
                                         <!--<div class="fileUpload btn btn-primary">
     <span>Attach Image <span  class="glyphicon glyphicon-picture"></span></span>
     <input id="uploadBtn" type="file" class="upload" name="image" />
@@ -389,4 +392,58 @@ echo '</select>';
     <!-- ============================================================== -->
     <!-- End Page Content -->
     <div id="notify_2"></div>
+    <script src="./template/plugins/bower_components/jquery/dist/jquery.min.js"></script>
     <script src="./js/course12.js"></script>
+ 
+    <!--<script src="//cdn.ckeditor.com/4.10.1/full/ckeditor.js"></script>-->
+    <!--<script src="./js/ckeditor.js"></script>-->
+    <script src="./ckeditor/ckeditor.js"></script>
+<!--<textarea name="content" id="editor"></textarea>-->
+<script>
+    // Replace the <textarea id="editor1"> with a CKEditor
+    // instance, using default configuration.
+    var options = {
+        filebrowserUploadUrl : "./ajax/upload_editor_image.php",
+        filebrowserBrowseUrl: './editor_images.php',
+        filebrowserImageBrowseUrl: "./editor_images.php",
+        filebrowserBrowseUrl : './editor_images.php',
+        //filebrowserUploadUrl: '/decent-database/uploader'
+        filebrowserWindowWidth : '640',
+        filebrowserWindowHeight : '480',
+        //filebrowserFlashUploadUrl : '/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash'
+    }
+    try {
+        var question = CKEDITOR.replace('question', options);
+        question.config.height = 200;
+    }
+    catch(err){
+        //console.error(err)
+    }
+    try {
+        var questionn = CKEDITOR.replace('questionn', options);
+        question.config.height = 200;
+    }
+    catch(err){
+        //console.error(err)
+    }
+    /*var abstract = CKEDITOR.replace('abstract', options);
+    //abstract.SetupCKEditor( abstract, '/decent-database/uploads/publications/images-all/' );
+    var body = CKEDITOR.replace('body', options);
+    body.config.height = 500;
+    CKEDITOR.replace('references', options);
+    var introduction = CKEDITOR.replace('introduction', options);
+    introduction.config.height = 130;
+    var noveltyPoints = CKEDITOR.replace('novelty', options);
+    noveltyPoints.config.height = 100;
+    var authors = CKEDITOR.replace('authors', options);
+    authors.config.height = 80;
+    //console.log (Array.from( editor.ui.componentFactory.names() ) )
+
+
+    /*ClassicEditor
+                                        .create( document.querySelector( '#editor' )  )
+        .catch( error => {
+            console.error( error );
+        } );*/
+</script>
+ 
