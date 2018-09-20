@@ -57,7 +57,7 @@ $files = scandir("./editor-images");
     ?>
     <div class="col-md-4" style="margin-bottom:15px;margin-top:15px;">
     <div style="border:1px solid #cccccc;padding:5px">
-            <a style="" href="#"><img class="img-responsive" style="height:200px" src='<?php echo getHostAddress()."/editor-images/".urlencode($file);?>'></a>
+            <a style="" href="#"><img class="img-responsive" style="height:200px" src='<?php echo getHostAddress()."/editor-images/".htmlentities($file);?>'></a>
         </div>
     </div>
     <?php 
