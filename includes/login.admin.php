@@ -7,7 +7,9 @@
 <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" />
 <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" />
 <link href="https://fonts.googleapis.com/css?family=Titilliu+Web:400,700,700italic,600italic,300italic,200italic,400italic,600" rel="stylesheet" type="text/css">
-<link rel="stylesheet" href="/font-awesome-4.6.3/css/font-awesome.min.css" type="text/css"/>
+<!--<link rel="stylesheet" href="/font-awesome-4.6.3/css/font-awesome.min.css" type="text/css"/>-->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    
 <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" type="text/css"/>
 <link rel="shortcut icon" href="logo-footer.jpg"  />
 <title>Untitled Document</title>
@@ -23,6 +25,9 @@ input, select, button { bo-shadow:1px 1px 5px #333333}
 </head>
 
 <body>
+<div style="position:absolute;top:15px;right:100px;width:200px">
+            <a href="./home" class="btn btn-primary"> <i class="fa fa-pencil-alt"></i> Exam</a>
+    </div>
 <div style="padding-top:100px" class="container-fluid">
 <div class="row">
 
